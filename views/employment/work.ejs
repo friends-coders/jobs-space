@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Work</title>
+</head>
+
+<body>
+    <header>
+
+    </header>
+    <main>
+        <form action="/work" method="get">
+            <input type="text" name="city">
+            <button>Submit</button>
+        </form>
+        <div>
+            <% workinfo.forEach(item =>{ %>
+                <div class="workInfo">
+                    <h2> <%= item.title %></h2>
+                    <img src="<%= item.company_logo %>">
+                    <h4> <%= item.type %> </h4>
+                    <h4> <%= item.company %> </h4>
+                    <h4> <%= item.created_at %> </h4>
+                    <p> <%= item.description %> </p>
+                    <%= item.how_to_apply %>
+                </div>
+            <% }); %>
+        </div>
+    </main>
+</body>
+</html>
