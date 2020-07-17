@@ -20,12 +20,12 @@
             <% workinfo.forEach(item =>{ %>
                 <div class="workInfo">
                     <h2> <%= item.title %></h2>
-                    <img src="<%= item.company_logo %>">
+                    <img src="<%= item.company_logo %>" width="100px" height="100px">
                     <h4> <%= item.type %> </h4>
                     <h4> <%= item.company %> </h4>
                     <h4> <%= item.created_at %> </h4>
-                    <p> <%= item.description %> </p>
-                    <%= item.how_to_apply %>
+                    <p> <%- item.description %> </p>
+                    <%- item.how_to_apply %> 
                 </div>
             <% }); %>
         </div>
