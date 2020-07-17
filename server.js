@@ -4,7 +4,7 @@
 require("dotenv").config();
 
 // this is for the PORT it is sotred in .env file which is hidden online
-const PORT = process.env.PORT || process.env.PORTTWO;
+const PORT = process.env.PORT || 3030;
 
 // this is for using express library
 const express = require("express");
@@ -64,6 +64,18 @@ function Work(item) {
   this.how_to_apply = item.how_to_apply
 }
 
+/////// Courses API //////
+server.get("/courses", (req, res)=>{
+  let couresName = req.query.couresName;
+  let url = ``;
+  superagent.get(url).then((result) => {
+    let resultJSON = result.body;
+    let courseData = resultJSON.map((value) => {
+      return new Course(value);
+    });
+    res.render("employment/courses", {courseInfo : courseData});
+  });
+})
 
 
 
