@@ -47,7 +47,7 @@ server.get("/work", (req, res) => {
     let workData = resultJSON.map((value) => {
       return new Work(value);
     });
-    res.render("employment/work", {workinfo : workData});
+    res.render("basics/work", {workinfo : workData});
   });
 });
 
@@ -60,7 +60,7 @@ function Work(item) {
   this.type = item.type,
   this.location = item.location,
   this.description = item.description,
-  this.company_logo = item.company_logo,
+  this.company_logo = item.company_logo ? item.company_logo : `https://image.flaticon.com/icons/svg/3143/3143340.svg`,
   this.how_to_apply = item.how_to_apply
 }
 
@@ -69,11 +69,11 @@ server.get("/courses", (req, res)=>{
   let couresName = req.query.couresName;
   let url = `https://api.coursera.org/api/courses.v1?q=search&query=${couresName}&fields=photoUrl,description,primaryLanguages,certificates,previewLink,categories`;
   superagent.get(url).then((result) => {
-    let resultJSON = result.body;
+    let resultJSON = result.body.elements;
     let courseData = resultJSON.map((value) => {
       return new Course(value);
     });
-    res.render("employment/courses", {courseInfo : courseData});
+    res.render("basics/courses", {courseInfo : courseData});
   });
 })
 
