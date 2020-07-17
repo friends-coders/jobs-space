@@ -4,7 +4,7 @@
 require("dotenv").config();
 
 // this is for the PORT it is sotred in .env file which is hidden online
-const PORT = process.env.PORT || process.env.PORTTWO;
+const PORT = process.env.PORT || 3030;
 
 // this is for using express library
 const express = require("express");
@@ -47,7 +47,7 @@ server.get("/work", (req, res) => {
     let workData = resultJSON.map((value) => {
       return new Work(value);
     });
-    res.render("employment/work", {workinfo : workData});
+    res.render("basics/work", {workinfo : workData});
   });
 });
 
@@ -60,11 +60,33 @@ function Work(item) {
   this.type = item.type,
   this.location = item.location,
   this.description = item.description,
-  this.company_logo = item.company_logo,
+  this.company_logo = item.company_logo ? item.company_logo : `https://image.flaticon.com/icons/svg/3143/3143340.svg`,
   this.how_to_apply = item.how_to_apply
 }
 
+/////// Courses API //////
+server.get("/courses", (req, res)=>{
+  let couresName = req.query.couresName;
+  let url = `https://api.coursera.org/api/courses.v1?q=search&query=${couresName}&fields=photoUrl,description,primaryLanguages,certificates,previewLink,categories`;
+  superagent.get(url).then((result) => {
+    let resultJSON = result.body.elements;
+    let courseData = resultJSON.map((value) => {
+      return new Course(value);
+    });
+    res.render("basics/courses", {courseInfo : courseData});
+  });
+})
 
+// constructor for the Work
+function Course(item) {
+  this.name = item.name,
+  this.primaryLanguages = item.primaryLanguages[0],
+  this.certificates = item.certificates,
+  this.categories = item.categories,
+  this.photoUrl = item.photoUrl,
+  this.description = item.description,
+  this.previewLink = `https://www.coursera.org/programs/talent-beyond-borders-learning-program-wsf3c`
+}
 
 
 

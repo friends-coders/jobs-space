@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Work</title>
+</head>
+
+<body>
+    <header>
+
+    </header>
+    <main>
+        <form action="/courses" method="get">
+            <input type="text" name="couresName">
+            <button>Submit</button>
+        </form>
+        <div>
+            <% courseInfo.forEach(item =>{ %>
+                <div>
+                    <h2> <%= item.name %></h2>
+                    <img src="<%= item.photoUrl %>" width="100px" height="100px">
+
+                    <h4> <% item.categories.join(', ').split(' ').forEach(elem=>{ %>
+                        <span> <%= elem %> </span>
+                    <% }); %> </h4>
+
+                    <h4> <%= item.primaryLanguages %> </h4>
+
+                    <h4> <% item.certificates.join(', ').split(' ').forEach(elem=>{ %>
+                        <span> <%= elem %> </span>
+                    <% }); %> </h4>
+                    
+                   <a href="<%= item.how_to_apply %>">Click to apply</a>  
+
+                    <p> <%= item.description %> </p>
+                </div>
+            <% }); %>
+        </div>
+    </main>
+</body>
+</html>
