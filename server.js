@@ -44,9 +44,7 @@ server.get("/work", (req, res) => {
   let url = `https://jobs.github.com/positions.json?location=${city}`;
   superagent.get(url).then((result) => {
     let resultJSON = result.body;
-    console.log(resultJSON);
     let workData = resultJSON.map((value) => {
-      console.log("Hello");
       return new Work(value);
     });
     res.render("employment/work", {workinfo : workData});
