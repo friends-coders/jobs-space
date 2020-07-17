@@ -67,7 +67,7 @@ function Work(item) {
 /////// Courses API //////
 server.get("/courses", (req, res)=>{
   let couresName = req.query.couresName;
-  let url = ``;
+  let url = `https://api.coursera.org/api/courses.v1?q=search&query=${couresName}&fields=photoUrl,description,primaryLanguages,certificates,previewLink,categories`;
   superagent.get(url).then((result) => {
     let resultJSON = result.body;
     let courseData = resultJSON.map((value) => {
@@ -77,6 +77,16 @@ server.get("/courses", (req, res)=>{
   });
 })
 
+// constructor for the Work
+function Course(item) {
+  this.name = item.name,
+  this.primaryLanguages = item.primaryLanguages[0],
+  this.certificates = item.certificates,
+  this.categories = item.categories,
+  this.photoUrl = item.photoUrl,
+  this.description = item.description,
+  this.previewLink = `https://www.coursera.org/programs/talent-beyond-borders-learning-program-wsf3c`
+}
 
 
 
