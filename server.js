@@ -20,6 +20,7 @@ const methodOverride = require("method-override");
 
 // this is for using the postergres for the database
 const pg = require("pg");
+const { query } = require("express");
 
 // Application setup
 const server = express();
@@ -31,20 +32,39 @@ server.set("view engine", "ejs");
 server.use(express.urlencoded({ extended: true }));
 
 //////////////////////// ROUTES //////////////////////////////
-/////// Employment API //////
-
-server.get("/employment/", (req, res) => {
-    
+/////// Home //////
+server.get("/", (req, res) => {
+  res.status(200).send("/public/index");
 });
 
+/////// Employment API //////
 
+server.get("/work", (req, res) => {
+  let city = req.query.city;
+  let url = `https://jobs.github.com/positions.json?location=${city}`;
+  superagent.get(url).then((result) => {
+    let resultJSON = result.body;
+    console.log(resultJSON);
+    let workData = resultJSON.map((value) => {
+      console.log("Hello");
+      return new Work(value);
+    });
+    res.render("employment/work", {workinfo : workData});
+  });
+});
 
-
-
-
-
-
-
+// constructor for the Work
+function Work(item) {
+  this.url = item.url,
+  this.created_at = item.created_at,
+  this.company = item.company,
+  this.title = item.title,
+  this.type = item.type,
+  this.location = item.location,
+  this.description = item.description,
+  this.company_logo = item.company_logo,
+  this.how_to_apply = item.how_to_apply
+}
 
 
 
@@ -71,7 +91,7 @@ server.get("/employment/", (req, res) => {
 
 //  this is for all faild routes that the user might insert
 server.get("*", (req, res) => {
-  res.status(404).send('/error.ejs');
+  res.status(404).send("/error.ejs");
 });
 
 // this is for problems or fixing issues a message will be shown to the user
@@ -80,8 +100,8 @@ server.use((Error, req, res) => {
 });
 
 // this is will tell the port to listen to this server I think and make sure the database works fine
-client.connect().then(() => {
-  server.listen(PORT, () => {
-    console.log(`do not kill me please ${PORT}`);
-  });
+// client.connect().then(() => {
+server.listen(PORT, () => {
+  console.log(`do not kill me please ${PORT}`);
 });
+// });
