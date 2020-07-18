@@ -42,13 +42,19 @@ server.get("/", (req, res) => {
 server.get("/work", (req, res) => {
   let city = req.query.city;
   let url = `https://jobs.github.com/positions.json?location=${city}`;
-  superagent.get(url).then((result) => {
-    let resultJSON = result.body;
-    let workData = resultJSON.map((value) => {
-      return new Work(value);
+
+  if(city){
+    superagent.get(url).then((result) => {
+      let resultJSON = result.body;
+      let workData = resultJSON.map((value) => {
+        return new Work(value);
+      });
+      res.render("basics/work", {workinfo : workData});
     });
-    res.render("basics/work", {workinfo : workData});
-  });
+  }else{
+    res.render("basics/work")
+  }
+
 });
 
 // constructor for the Work
@@ -65,16 +71,23 @@ function Work(item) {
 }
 
 /////// Courses API //////
+
 server.get("/courses", (req, res)=>{
   let couresName = req.query.couresName;
   let url = `https://api.coursera.org/api/courses.v1?q=search&query=${couresName}&fields=photoUrl,description,primaryLanguages,certificates,previewLink,categories`;
-  superagent.get(url).then((result) => {
-    let resultJSON = result.body.elements;
-    let courseData = resultJSON.map((value) => {
-      return new Course(value);
-    });
-    res.render("basics/coursat", {courseInfo : courseData});
-  });
+
+    if(couresName){
+      superagent.get(url).then((result) => {
+        let resultJSON = result.body.elements;
+        let courseData = resultJSON.map((value) => {
+          return new Course(value);
+        });
+        res.render("basics/coursat", {courseInfo : courseData});
+      });
+    }else{
+      res.render("basics/coursat")
+    }
+
 })
 
 // constructor for the Work
@@ -95,14 +108,21 @@ server.get("/quizzes", (req, res)=>{
 
   let url = `https://quizapi.io/api/v1/questions?apiKey=${key}&limit=20&tags=${quizzeTag}`;
 
-  superagent.get(url).then((result) => {
-    let resultJSON = result.body;
-    let quizzeData = resultJSON.map((value) => {
-      return new Quizze(value);
+  if(quizzeTag){
+    superagent.get(url).then((result) => {
+      let resultJSON = result.body;
+      // console.log(resultJSON);
+      let quizzeData = resultJSON.map((value) => {
+        return new Quizze(value);
+      });
+      // res.status(200).json(courseData)
+      res.render("basics/quizzat", {quizzeInfo : quizzeData});
     });
-    // res.status(200).json(courseData)
-    res.render("basics/quizzat", {quizzeInfo : quizzeData});
-  });
+  }else{
+    res.render("basics/quizzat");
+  }
+
+
 })
 
 // constructor for the Work
