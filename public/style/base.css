@@ -32,8 +32,9 @@ html {
   height: 64px;
 }
 #navbar h1 {
-  color: lightblue;
+  font-size: 24px;
   font-family: "Jost", sans-serif;
+  color: lightblue;
   float: left;
   line-height: 64px;
 }
@@ -41,7 +42,7 @@ html {
   font-family: "Jost", sans-serif;
   float: right;
   margin: 12px;
-  padding: 8px 34px;
+  padding: 6px 34px;
   background: none;
   border: 1.5px solid white;
   border-radius: 4px;
@@ -63,6 +64,7 @@ li {
 }
 li a {
   font-family: "Julius Sans One", sans-serif;
+font-weight: 900;
   display: block;
   color: white;
   text-align: center;
@@ -70,7 +72,7 @@ li a {
   text-decoration: none;
 }
 li a:hover {
-    color: rgb(113, 203, 233);
+  color: rgb(113, 203, 233);
 }
 /* slideshow images */
 .slider {
@@ -85,9 +87,9 @@ li a:hover {
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
+  height: 70%;
   opacity: 0;
-  transform: scale(1.2);
+  transform: scale(1);
   transition: all 2s ease-in-out;
 }
 
@@ -99,7 +101,7 @@ li a:hover {
 .slide .content {
   position: absolute;
   bottom: 70px;
-  left: -600px;
+  left: -500px;
   opacity: 0;
   width: 600px;
   background-color: rgba(0, 0, 0, 0.8);
@@ -108,10 +110,15 @@ li a:hover {
 }
 
 .slide .content h1 {
+  font-family: "Jost", sans-serif;
   margin-bottom: 10px;
-  color: #e94654;
+  color: rgb(113, 203, 233);
   font-size: 50px;
   font-weight: 800;
+}
+.slide .content p {
+  font-family: "Jost", sans-serif;
+  color: white;
 }
 
 .slide.current .content {
@@ -122,20 +129,20 @@ li a:hover {
 
 .buttons button#next {
   position: absolute;
-  top: 50%;
+  top: 40%;
   right: 15px;
 }
 
 .buttons button#prev {
   position: absolute;
-  top: 50%;
+  top: 40%;
   left: 15px;
 }
 
 .buttons button {
-  border: 2px solid #e94654;
+  border: 2px solid rgb(113, 203, 233);
   background-color: transparent;
-  color: #e94654;
+  color: rgb(113, 203, 233);
   cursor: pointer;
   padding: 13px 15px;
   border-radius: 50%;
@@ -143,7 +150,7 @@ li a:hover {
 }
 
 .buttons button:hover {
-  background-color: #e94654;
+  background-color: rgb(113, 203, 233);
   color: #fff;
 }
 
@@ -160,22 +167,24 @@ li a:hover {
 
 /* Background Images */
 .slide:first-child {
-  background: url("https://drive.google.com/uc?id=17tLcBTupNVFBDhqkzdfYq5XqS5MnShPb")
+  background: url("https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80")
     no-repeat center center/cover;
 }
 .slide:nth-child(2) {
-  background: url("https://drive.google.com/uc?id=1Oxn2mhUOSG-n2kU_e-PAk-_I6erD4aVt")
+  background: url("https://images.unsplash.com/photo-1504384308090-c894fdcc538d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80")
     no-repeat center center/cover;
 }
 .slide:nth-child(3) {
-  background: url("https://drive.google.com/uc?id=1A8ci7uQx4ualinoXVY4BDMwO_YCnzZWK")
+  background: url("https://images.unsplash.com/photo-1573496130407-57329f01f769?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80")
     no-repeat center center/cover;
 }
 .slide:nth-child(4) {
-  background: url("https://drive.google.com/uc?id=1apx4Jkym-X8XvLvopVWEVtjKvvc9yhWq")
+  background: url("https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80")
     no-repeat center center/cover;
 }
 .slide:nth-child(5) {
-  background: url("https://drive.google.com/uc?id=19eTswcHPUVwmVLuqPsUXeKcqsn1hzsQv")
+  background: url("https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1053&q=80")
     no-repeat center center/cover;
 }
+
+/* /////////////////////////////////////////////// */
