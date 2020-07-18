@@ -1,11 +1,181 @@
+@import url("https://fonts.googleapis.com/css2?family=Julius+Sans+One&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Jost&display=swap");
+/* 
+font-family: 'Julius Sans One', sans-serif;
+font-family: 'Jost', sans-serif;
+ */
+/* 
+ color palette 
+ rgb(113, 203, 233)
+ */
 * {
-    box-sizing: border-box;
-    padding: 0;
-    margin: 0;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+html {
+  overflow-y: hidden;
+}
+#error {
+  background-image: url("/public/images/404.png");
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
-#error{
-    background-image: url();
-    background-repeat: no-repeat;
-    background-size: cover;
+/* Home Page */
+#logo {
+  float: left;
+  margin: 14px 20px;
+}
+#navbar {
+  background-color: black;
+  height: 64px;
+}
+#navbar h1 {
+  color: lightblue;
+  font-family: "Jost", sans-serif;
+  float: left;
+  line-height: 64px;
+}
+#navbar button {
+  font-family: "Jost", sans-serif;
+  float: right;
+  margin: 12px;
+  padding: 8px 34px;
+  background: none;
+  border: 1.5px solid white;
+  border-radius: 4px;
+  cursor: pointer;
+}
+#navbar button a {
+  text-decoration: none;
+  color: white;
+}
+#navbar button:hover {
+  background-color: rgb(113, 203, 233);
+  color: black;
+}
+ul {
+  list-style-type: none;
+}
+li {
+  float: right;
+}
+li a {
+  font-family: "Julius Sans One", sans-serif;
+  display: block;
+  color: white;
+  text-align: center;
+  margin: 24px 16px;
+  text-decoration: none;
+}
+li a:hover {
+    color: rgb(113, 203, 233);
+}
+/* slideshow images */
+.slider {
+  position: relative;
+  overflow: hidden;
+  height: 100vh;
+  width: 100vw;
+}
+
+.slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transform: scale(1.2);
+  transition: all 2s ease-in-out;
+}
+
+.slide.current {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.slide .content {
+  position: absolute;
+  bottom: 70px;
+  left: -600px;
+  opacity: 0;
+  width: 600px;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: #333;
+  padding: 35px;
+}
+
+.slide .content h1 {
+  margin-bottom: 10px;
+  color: #e94654;
+  font-size: 50px;
+  font-weight: 800;
+}
+
+.slide.current .content {
+  opacity: 1;
+  transform: translateX(600px);
+  transition: all 1s ease-in-out 1s;
+}
+
+.buttons button#next {
+  position: absolute;
+  top: 50%;
+  right: 15px;
+}
+
+.buttons button#prev {
+  position: absolute;
+  top: 50%;
+  left: 15px;
+}
+
+.buttons button {
+  border: 2px solid #e94654;
+  background-color: transparent;
+  color: #e94654;
+  cursor: pointer;
+  padding: 13px 15px;
+  border-radius: 50%;
+  outline: none;
+}
+
+.buttons button:hover {
+  background-color: #e94654;
+  color: #fff;
+}
+
+@media (max-width: 500px) {
+  .slide .content {
+    bottom: -300px;
+    left: 0;
+    width: 100%;
+  }
+  .slide.current .content {
+    transform: translateY(-300px);
+  }
+}
+
+/* Background Images */
+.slide:first-child {
+  background: url("https://drive.google.com/uc?id=17tLcBTupNVFBDhqkzdfYq5XqS5MnShPb")
+    no-repeat center center/cover;
+}
+.slide:nth-child(2) {
+  background: url("https://drive.google.com/uc?id=1Oxn2mhUOSG-n2kU_e-PAk-_I6erD4aVt")
+    no-repeat center center/cover;
+}
+.slide:nth-child(3) {
+  background: url("https://drive.google.com/uc?id=1A8ci7uQx4ualinoXVY4BDMwO_YCnzZWK")
+    no-repeat center center/cover;
+}
+.slide:nth-child(4) {
+  background: url("https://drive.google.com/uc?id=1apx4Jkym-X8XvLvopVWEVtjKvvc9yhWq")
+    no-repeat center center/cover;
+}
+.slide:nth-child(5) {
+  background: url("https://drive.google.com/uc?id=19eTswcHPUVwmVLuqPsUXeKcqsn1hzsQv")
+    no-repeat center center/cover;
 }
