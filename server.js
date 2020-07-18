@@ -73,7 +73,7 @@ server.get("/courses", (req, res)=>{
     let courseData = resultJSON.map((value) => {
       return new Course(value);
     });
-    res.render("basics/courses", {courseInfo : courseData});
+    res.render("basics/coursat", {courseInfo : courseData});
   });
 })
 
@@ -88,10 +88,30 @@ function Course(item) {
   this.previewLink = `https://www.coursera.org/programs/talent-beyond-borders-learning-program-wsf3c`
 }
 
+/////// Quizzes API //////
+server.get("/quizzes", (req, res)=>{
+  let quizzeTag = req.query.quizzeTag;
+  let key = process.env.QUIZAPI_KEY;
 
+  let url = `https://quizapi.io/api/v1/questions?apiKey=${key}&limit=20&tags=${quizzeTag}`;
 
+  superagent.get(url).then((result) => {
+    let resultJSON = result.body;
+    let quizzeData = resultJSON.map((value) => {
+      return new Quizze(value);
+    });
+    // res.status(200).json(courseData)
+    res.render("basics/quizzat", {quizzeInfo : quizzeData});
+  });
+})
 
-
+// constructor for the Work
+function Quizze(item) {
+  this.question = item.question,
+  this.answers = item.answers,
+  this.correct_answer = item.correct_answer,
+  this.difficulty = item.difficulty
+}
 
 
 
