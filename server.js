@@ -36,7 +36,7 @@ server.use(express.urlencoded({ extended: true }));
 server.get("/", (req, res) => {
   res.status(200).send("/public/index");
 });
-///////////////////////////////////////////////////////////
+/////// Quizzes API  start//////
 server.get('/quiz', quizzes);
 let amount = [10];
 let category = [];
@@ -78,7 +78,7 @@ function Quizzes(obj) {
   this.incorrect_answers = obj.incorrect_answers;
 
 }
-///////////////////////////////////////////////////////////
+/////// Quizzes API  End//////
 
 /////// Employment API //////
 
