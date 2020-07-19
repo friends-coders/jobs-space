@@ -142,7 +142,7 @@ server.post('/results', (req, res)=>{
   })
   console.log(trueA)
   res.render("basics/results", {trueA : trueA});
-  
+
 })
 
 // constructor for the Work
@@ -153,12 +153,26 @@ function Quizze(item) {
   this.difficulty = item.difficulty
 }
 
+////////////// UpDate HireMe //////////////
+server.put('/upDate/:userDetils.id', (req, res)=>{
+
+})
+
+server.get('/prof', (req, res)=>{
+  res.render("basics/profile")
+})
 
 
+////////////// Is User //////////////
 
-
-
-
+// server.get('/isuser', (req, res)=>{
+//   if(user != guest){
+//     user_obj.isuser = true;
+//     user_obj.user_name = user;
+//     user_obj.user_name = user;
+//     
+//   }
+// })
 
 
 
