@@ -22,7 +22,7 @@ const methodOverride = require("method-override");
 
 // this is for using the postergres for the database
 const pg = require("pg");
-const { query } = require("express");
+// const { query } = require("express");
 
 // Application setup
 const server = express();
@@ -35,12 +35,13 @@ server.use(express.urlencoded({ extended: true }));
 
 
 
+
 ///////////////HireME Start\\\\\\\\\\\\\\\\\\\\\\\\\\
 // Set The Storage Engine
 const storage = multer.diskStorage({
   destination: './public/uploads/',
-  filename: function(req, file, cb){
-    cb(null,file.fieldname + '-' + Date.now() + path.extname(file.originalname));
+  filename: function (req, file, cb) {
+    cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
   }
 });
 
@@ -48,14 +49,14 @@ const storage = multer.diskStorage({
 // Init Upload
 const upload = multer({
   storage: storage,
-  limits:{fileSize: 1000000},
-  fileFilter: function(req, file, cb){
+  limits: { fileSize: 1000000 },
+  fileFilter: function (req, file, cb) {
     checkFileType(file, cb);
   }
 }).single('myImage');
 
 // Check File Type
-function checkFileType(file, cb){
+function checkFileType(file, cb) {
   // Allowed ext
   const filetypes = /jpeg|jpg|png|gif/;
   // Check ext
@@ -63,15 +64,15 @@ function checkFileType(file, cb){
   // Check mime
   const mimetype = filetypes.test(file.mimetype);
 
-  if(mimetype && extname){
-    return cb(null,true);
+  if (mimetype && extname) {
+    return cb(null, true);
   } else {
     cb('Error: Images Only!');
   }
 }
 
 // Check File Type
-function checkFileType(file, cb){
+function checkFileType(file, cb) {
   // Allowed ext
   const filetypes = /jpeg|jpg|png|gif/;
   // Check ext
@@ -79,8 +80,8 @@ function checkFileType(file, cb){
   // Check mime
   const mimetype = filetypes.test(file.mimetype);
 
-  if(mimetype && extname){
-    return cb(null,true);
+  if (mimetype && extname) {
+    return cb(null, true);
   } else {
     cb('Error: Images Only!');
   }
@@ -88,12 +89,12 @@ function checkFileType(file, cb){
 
 server.post('/upload', (req, res) => {
   upload(req, res, (err) => {
-    if(err){
+    if (err) {
       res.render('basics/Hireme', {
         msg: err
       });
     } else {
-      if(req.file == undefined){
+      if (req.file == undefined) {
         res.render('basics/Hireme', {
           msg: 'Error: No File Selected!'
         });
@@ -112,11 +113,12 @@ server.post('/upload', (req, res) => {
 
 
 
+
 //////////////////////// ROUTES //////////////////////////////
 /////// Home //////
 server.get("/", (req, res) => {
   // res.render("basics/Hireme");
-  res.status(200).send("/public/index");
+  res.status(200).render("/public/index");
 });
 server.get("/hire", (req, res) => {
   res.render("basics/Hireme");
@@ -229,24 +231,85 @@ function Course(item) {
 
 
 ///////////////Sign up Start\\\\\\\\\\\\\\\\\\\\\\\
+server.get('/register', (req, res) => {
+  res.render('basics/signup')
+});
 
-// server.get('/signedup',addToDB);
-// function addToDB(req,res){
-// let {Pic,FullName,Bio,country,Email,work,GitHub,Twitter,facebook,Password,ConfirmedPassword} = req.body;
-// let query = ` INSERT INTO  users (Pic,FullName,Email,Bio,GitHub,Twitter,facebook,Password)
-// VALUES ($1,$2,$3,$4,$5,$6,$7,$8);` ;
-// let values = [Pic,FullName,Email,Bio,GitHub,Twitter,facebook,Password];
-// client.query(query,values)
-// .then(()=>{
-//   res.redirect('/');
-// })
-// };
+server.post('/signedup', addToDB);
+function addToDB(req, res) {
+  console.log('firstHELLO');
+  let { FullName, password, selectGender, selectEducation, major, Email, linkedin, github, Bio } = req.body;
+
+  let sql = `INSERT INTO users(fullName,password ,gender,education,major,email,linkedIn,github,bio)
+VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9);` ;
+  let values = [FullName, password, selectGender, selectEducation, major, Email, linkedin, github, Bio];
+  console.log('SecondHELLO');
+  console.log(values);
+
+  client.query(sql, values)
+    .then((result) => {
+      console.log(result);
+      res.redirect('/');
+      console.log('ENDDDDDD');
+      // console.log(result)
+      // res.redirect('Hireme.ejs')
+    });
+
+};
 
 ///////////////Sign up End\\\\\\\\\\\\\\\\\\\\\\\
 
 
 
+///////////////Sign ININ Start\\\\\\\\\\\\\\\\\\\\\\\
+server.get('/signIn', (req, res) => {
+  res.render('basics/signIn');
+});
 
+server.post('/signing', retrieveFromDB);
+
+function retrieveFromDB(req, res) {
+  let { Email, password } = req.body;
+
+  let sql = `SELECT EXISTS(SELECT * FROM users WHERE Email=$1 AND password=$2);`;
+  let values = [Email, password];
+  console.log(values);
+   client.query(sql, values)
+    .then((result) => {
+      if (result.rows[0].exists) {
+        let SQL = `SELECT * FROM users WHERE Email=$1 AND password=$2;`;
+        console.log('EXISTS')
+        let tempObj = [];
+        localStorage.setItem('currentUser', 'obj');
+
+        return client.query(SQL, values)
+          .then((result) => {
+            let obj = JSON.stringify(result.rows[0]);
+            return obj;
+            // tempObj.push(obj);
+            // console.log(result.rows[0]);
+            // localStorage.setItem('currentUser', 'obj');
+
+          });
+        console.log(tempObj);
+
+        // console.log(result.rows[0].exists);
+
+      } else {
+        console.log('DOES NOT EXIST');
+        console.log(result.rows[0].exists);
+
+      }
+      // console.log(result.rows);
+
+    })
+    .catch((error) => {
+      console.log('error');
+    })
+
+};
+
+///////////////Sign up End\\\\\\\\\\\\\\\\\\\\\\\
 
 ///////////////Hire me Start\\\\\\\\\\\\\\\\\\\\\\\
 server.post('/publish', publishPerson);
@@ -291,7 +354,13 @@ server.use((Error, req, res) => {
 
 // this is will tell the port to listen to this server I think and make sure the database works fine
 // client.connect().then(() => {
-server.listen(PORT, () => {
-  console.log(`do not kill me please ${PORT}`);
-});
+client.connect(() => {
+
+  server.listen(PORT, () => {
+    console.log(`do not kill me please ${PORT}`);
+  });
+
+})
 // });
+
+
