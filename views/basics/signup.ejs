@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <link rel="stylesheet" href="/style/base.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <main>
+
+
+
+
+
+
+      <div class="container">
+        <h1>File Upload</h1>
+        <%= typeof msg != 'undefined' ? msg : '' %>
+        <form action="/upload" method="POST" enctype="multipart/form-data">
+          <div class="file-field input-field">
+            <div class="btn grey">
+              <span>File</span>
+              <input name="myImage" type="file">
+            </div>
+            <div class="file-path-wrapper">
+              <input class="file-path validate" type="text">
+            </div>
+          </div>
+          <button type="submit" class="btn">Submit</button>
+        </form>
+        <br>
+        <img src="<%= typeof file != 'undefined' ? file : '' %>" class="responsive-img">
+      </div>
+  
+
+      
+
+
+
+
+      <div class="wrapper">
+        <div class="profile">
+          <div class="content">
+            <h1>Edit Profile</h1>
+            <form action="/signedup" method="POST">
+              <!-- Photo -->
+              <fieldset>
+                <div class="grid-35">
+                  <label for="avatar">Your Photo</label>
+                </div>
+                <div class="grid-65">
+                  <span class="photo" title="Upload your Avatar!"></span>
+                  <input type="file" class="btn" name="Pic" />
+                </div>
+              </fieldset>
+              <fieldset>
+                <div class="grid-35">
+                  <label for="FullName">Full Name</label>
+                </div>
+                <div class="grid-65">
+                  <input type="text" id="FullName" tabindex="1" name="FullName" />
+                </div>
+              </fieldset>
+
+              <!-- password -->
+              <fieldset>
+                <div class="grid-35">
+                  <label for="password">Password</label>
+                </div>
+                <div class="grid-65">
+                  <input
+                    type="password"
+                    id="password"
+                    tabindex="1"
+                    name="password"
+                  />
+                </div>
+              </fieldset>
+              <!-- Confirme password -->
+              <fieldset>
+                <div class="grid-35">
+                  <label for="Confpass">Confirme password</label>
+                </div>
+                <div class="grid-65">
+                  <input
+                    type="password"
+                    id="Confpass"
+                    tabindex="1"
+                    name="Confirme password"
+                  />
+                </div>
+              </fieldset>
+
+              <!-- Gender -->
+              <fieldset>
+                <div class="grid-35">
+                  <label for="gender">Gender</label>
+                </div>
+                <div class="grid-65">
+                  <select name="selectGender" id="" > 
+                    <option value="Male" name="male">Male</option>
+                    <option value="Female" name="female">Female</option>
+                  </select>
+                </div>
+              </fieldset>
+               <!-- Education -->
+               <fieldset>
+                <div class="grid-35">
+                  <label for="">Education</label>
+                </div>
+                <div class="grid-65">
+                  <select name="selectEducation" id="" > 
+                    <option value="HighSchool" name="HighSchool">HighSchool</option>
+                    <option value="Diploma" name="Diploma">Diploma</option>
+                    <option value="Bachelor" name="Bachelor">Bachelor</option>
+                    <option value="Master" name="Master">Master</option>
+                    <option value="PHD" name="PHD">PHD</option>
+                  </select>
+                </div>
+              </fieldset>
+              <!-- MAJOR -->
+              <fieldset>
+                <div class="grid-35">
+                  <label for="major">Major</label>
+                </div>
+                <div class="grid-65">
+                  <input type="text" id="major" tabindex="6" name="major" />
+                </div>
+              </fieldset>
+              <!-- Email -->
+              <fieldset>
+                <div class="grid-35">
+                  <label for="email">Email Address</label>
+                </div>
+                <div class="grid-65">
+                  <input type="email" id="email" tabindex="6" name="Email" />
+                </div>
+              </fieldset>
+              <fieldset>
+                <div class="grid-35">
+                  <label for="linkedin">LinkedIn URL</label>
+                </div>
+                <div class="grid-65">
+                  <input type="text" id="linkedin" tabindex="12" name="linkedin"/>
+                </div>
+              </fieldset>
+              <!-- Github URL -->
+              <fieldset>
+                <div class="grid-35">
+                  <label for="github">Github URL</label>
+                </div>
+                <div class="grid-65">
+                  <input type="text" id="github" tabindex="13" name="github"/>
+                </div>
+              </fieldset>
+              <!-- Description about User -->
+              <fieldset>
+                <div class="grid-35">
+                  <label for="description">About you</label>
+                </div>
+                <div class="grid-65">
+                  <textarea
+                    name="Bio"
+                    id=""
+                    cols="30"
+                    rows="auto"
+                    tabindex="3"
+                    placeholder="Bio"
+                  ></textarea>
+                </div>
+              </fieldset>
+              <fieldset>
+                <input type="button" class="Btn cancel" value="Sign In" />
+              </fieldset>
+              <input type="submit" class="Btn" value="Sign Up" />
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <!-- http://www.smashingmagazine.com/2013/08/08/release-livestyle-css-live-reload/ -->
+    </main>
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <script src="/public/javascript/app.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  </body>
+</html>
