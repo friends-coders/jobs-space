@@ -4,6 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="/style/base.css" />
+
     <title>Profile uploads</title>
   </head>
   <body>
@@ -21,41 +23,47 @@
 
 
 
-    <div class="container">
-      <h1>File Upload</h1>
-      <%= typeof msg != 'undefined' ? msg : '' %>
-      <form action="/upload" method="POST" enctype="multipart/form-data">
-        <div class="file-field input-field">
-          <div class="btn grey">
-            <span>File</span>
-            <input name="myImage" type="file">
-          </div>
-          <div class="file-path-wrapper">
-            <input class="file-path validate" type="text">
-          </div>
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="wrapper">
+      <div class="profile">
+        <div class="content">
+          <h1>Post From</h1>
+          <form action="/signedup" method="POST">
+                      
+            <!-- Description about User -->
+            <fieldset>
+              <label for="description" >Post </label>
+              
+              <div class="grid-65">
+                <textarea
+                  name="Bio"
+                  id=""
+                  cols="50"
+                  rows="auto"
+                  tabindex="3"
+                  placeholder="What would you like to post"
+                ></textarea>
+              </div>
+            </fieldset>
+            
+            <input type="submit" class="Btn" value="Post" />
+          </form>
         </div>
-        <button type="submit" class="btn">Submit</button>
-      </form>
-      <br>
-      <img src="<%= typeof file != 'undefined' ? file : '' %>" class="responsive-img">
+      </div>
     </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+<!-- 
 </div>
     <form action="/publish" method="post" id="toggleForm">
       <div class="grid-65">
@@ -66,7 +74,6 @@
       <input type="text" name="fullname" />
       <label for="">specialist in: </label>
       <input type="text" name="specialistIn" />
-      <!-- <input type="text"  /> -->
       <label for="">LinkedIn </label>
       <input type="text" name="linkedIn" />
       <label for="">GitHub </label>
@@ -76,8 +83,11 @@
       <label for="">Bio</label>
       <textarea name="bio" id="" cols="30" rows="5"></textarea>
       <button>Submit</button>
-    </form>
+    </form> -->
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <script src="/public/javascript/app.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
   </body>
