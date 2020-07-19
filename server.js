@@ -135,16 +135,14 @@ server.post('/results', (req, res)=>{
 
   questions.forEach((item, idx) =>{
     // console.log(req.body[`answer${idx}`])
-    console.log(item[0].correct_answer)
-    // if(item[0].correct_answer == req.body.answer+idx){
-    //   trueA++
-    // }
+    // console.log(item[0].correct_answer)
+    if(item[0].correct_answer == req.body[`answer${idx}`]){
+      trueA++
+    }
   })
-  // if(trueA < 4){
-  //   console.log('this dude are stubed!!')
-  // }else{
-  //   console.log('you did it homy..')
-  // }
+  console.log(trueA)
+  res.render("basics/results", {trueA : trueA});
+  
 })
 
 // constructor for the Work
