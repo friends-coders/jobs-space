@@ -3,8 +3,8 @@
 // console.log('hiiiiiiiiiiiiiiiiiiiiiii thehtererer')
 
 $('#ahhaha').on("submit", function(event){
-    event.preventDefault();
-    location.reload();
+    // event.preventDefault();
+    // location.reload();
     // console.log($('input[type="radio"]:checked').val())
 })
 

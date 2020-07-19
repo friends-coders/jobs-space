@@ -102,6 +102,7 @@ function Course(item) {
 }
 
 /////// Quizzes API //////
+let questions = [];
 server.get("/quizzes", (req, res)=>{
   let quizzeTag = req.query.quizzeTag;
   let key = process.env.QUIZAPI_KEY;
@@ -116,25 +117,41 @@ server.get("/quizzes", (req, res)=>{
         return new Quizze(value);
       });
       // res.status(200).json(courseData)
-      let questions = [];
+      questions = [];
       for(let i =0; i < 5; i++){
         questions.push(quizzeData.splice((Math.floor(Math.random()*((quizzeData.length-1)-0+1))), 1))
       }
-      console.log(questions)
+      // console.log(questions)
       res.render("basics/quizzat", {quizzeInfo : questions});
     });
   }else{
     res.render("basics/quizzat", {quizzeInfo : ''});
   }
+})
 
+server.post('/results', (req, res)=>{
+  // console.log(req.body)
+  let trueA = 0;
 
+  questions.forEach((item, idx) =>{
+    // console.log(req.body[`answer${idx}`])
+    console.log(item[0].correct_answer)
+    // if(item[0].correct_answer == req.body.answer+idx){
+    //   trueA++
+    // }
+  })
+  // if(trueA < 4){
+  //   console.log('this dude are stubed!!')
+  // }else{
+  //   console.log('you did it homy..')
+  // }
 })
 
 // constructor for the Work
 function Quizze(item) {
   this.question = item.question,
   this.answers = item.answers,
-  this.correct_answer = item.correct_answer,
+  this.correct_answer = Object.entries(item.correct_answers).filter(item => item.includes("true"))[0][0].split('_').slice(0,2).join('_'),
   this.difficulty = item.difficulty
 }
 
