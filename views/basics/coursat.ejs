@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Work</title>
+    <title>Coursat</title>
 </head>
 
 <body>
@@ -17,7 +17,8 @@
             <button>Submit</button>
         </form>
         <div>
-            <% courseInfo.forEach(item =>{ %>
+            <% if(courseInfo.length != 0){ 
+                courseInfo.forEach(item =>{ %>
                 <div>
                     <h2> <%= item.name %></h2>
                     <img src="<%= item.photoUrl %>" width="100px" height="100px">
@@ -36,7 +37,8 @@
 
                     <p> <%= item.description %> </p>
                 </div>
-            <% }); %>
+            <% });
+            } %>
         </div>
     </main>
 </body>
