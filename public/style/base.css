@@ -1,11 +1,62 @@
-* {
-    box-sizing: border-box;
-    padding: 0;
-    margin: 0;
+@import url('https://fonts.googleapis.com/css2?family=Baloo+Thambi+2:wght@500&display=swap');
+/* 
+font-family: 'Baloo Thambi 2', cursive;
+ */
+ * {
+  font-family: 'Baloo Thambi 2', cursive;
 }
 
-#error{
-    background-image: url();
-    background-repeat: no-repeat;
-    background-size: cover;
+#navbar  {
+  height: 60px;
+  background: #111111;
+  width: 100%;
+  text-align: center;
+}
+.navbar-nav div{
+  margin: 0;
+  padding: 0;
+  margin: auto auto;
+}
+#navbar h1 {
+  float: left;
+  margin-left: 24px;
+  line-height: 60px;
+  color: #5c6ac4;
+  font-family: 'Baloo Thambi 2';
+  font-size: 24px;
+}
+#navbar h1 a:hover{
+  cursor: pointer;
+  color: #828cc9;
+}
+#logo {
+  float: left;
+  margin: 12px;
+}
+#navbar ul {
+  margin-left: 22%;
+}
+
+#navbar ul li {
+  margin-top: 20px;
+  padding-left: 80px;
+  list-style: none;
+  text-align: center;
+  float: left;
+  font-size: 20px;
+}
+
+
+#navbar button {
+  padding: 4px 20px;
+  background: none;
+  color: white;
+  border: 1px solid white;
+  border-radius: 4px;
+  margin-left: 40px;
+  margin-top: 12px;
+}
+#navbar button:hover {
+  background: #5c6ac4;
+  cursor: pointer;
 }
