@@ -173,13 +173,19 @@ function Quizzes(obj) {
 server.get("/work", (req, res) => {
   let city = req.query.city;
   let url = `https://jobs.github.com/positions.json?location=${city}`;
-  superagent.get(url).then((result) => {
-    let resultJSON = result.body;
-    let workData = resultJSON.map((value) => {
-      return new Work(value);
+
+  if(city){
+    superagent.get(url).then((result) => {
+      let resultJSON = result.body;
+      let workData = resultJSON.map((value) => {
+        return new Work(value);
+      });
+      res.render("basics/work", {workinfo : workData});
     });
-    res.render("basics/work", { workinfo: workData });
-  });
+  }else{
+    res.render("basics/work", {workinfo : ""})
+  }
+
 });
 
 // constructor for the Work
@@ -196,16 +202,23 @@ function Work(item) {
 }
 
 /////// Courses API //////
-server.get("/courses", (req, res) => {
+
+server.get("/courses", (req, res)=>{
   let couresName = req.query.couresName;
   let url = `https://api.coursera.org/api/courses.v1?q=search&query=${couresName}&fields=photoUrl,description,primaryLanguages,certificates,previewLink,categories`;
-  superagent.get(url).then((result) => {
-    let resultJSON = result.body.elements;
-    let courseData = resultJSON.map((value) => {
-      return new Course(value);
-    });
-    res.render("basics/courses", { courseInfo: courseData });
-  });
+
+    if(couresName){
+      superagent.get(url).then((result) => {
+        let resultJSON = result.body.elements;
+        let courseData = resultJSON.map((value) => {
+          return new Course(value);
+        });
+        res.render("basics/coursat", {courseInfo : courseData});
+      });
+    }else{
+      res.render("basics/coursat", {courseInfo : ''})
+    }
+
 })
 
 // constructor for the Work
@@ -219,11 +232,57 @@ function Course(item) {
     this.previewLink = `https://www.coursera.org/programs/talent-beyond-borders-learning-program-wsf3c`
 }
 
+/////// Quizzes API //////
+let questions = [];
+server.get("/quizzes", (req, res)=>{
+  let quizzeTag = req.query.quizzeTag;
+  let key = process.env.QUIZAPI_KEY;
 
+  let url = `https://quizapi.io/api/v1/questions?apiKey=${key}&limit=20&tags=${quizzeTag}`;
 
+  if(quizzeTag){
+    superagent.get(url).then((result) => {
+      let resultJSON = result.body;
+      // console.log(resultJSON);
+      let quizzeData = resultJSON.map((value) => {
+        return new Quizze(value);
+      });
+      // res.status(200).json(courseData)
+      questions = [];
+      for(let i =0; i < 5; i++){
+        questions.push(quizzeData.splice((Math.floor(Math.random()*((quizzeData.length-1)-0+1))), 1))
+      }
+      // console.log(questions)
+      res.render("basics/quizzat", {quizzeInfo : questions});
+    });
+  }else{
+    res.render("basics/quizzat", {quizzeInfo : ''});
+  }
+})
 
+server.post('/results', (req, res)=>{
+  // console.log(req.body)
+  let trueA = 0;
 
+  questions.forEach((item, idx) =>{
+    // console.log(req.body[`answer${idx}`])
+    // console.log(item[0].correct_answer)
+    if(item[0].correct_answer == req.body[`answer${idx}`]){
+      trueA++
+    }
+  })
+  console.log(trueA)
+  res.render("basics/results", {trueA : trueA});
+  
+})
 
+// constructor for the Work
+function Quizze(item) {
+  this.question = item.question,
+  this.answers = item.answers,
+  this.correct_answer = Object.entries(item.correct_answers).filter(item => item.includes("true"))[0][0].split('_').slice(0,2).join('_'),
+  this.difficulty = item.difficulty
+}
 
 
 
