@@ -12,7 +12,7 @@ const express = require("express");
 // this will help us to get data from APIs and store them
 const superagent = require("superagent");
 
-// this is for using ejs view engaine
+// this is for using ejs view engine
 const ejs = require("ejs");
 
 // this is for using REST and READ
@@ -20,7 +20,7 @@ const methodOverride = require("method-override");
 
 // this is for using the postergres for the database
 const pg = require("pg");
-const { query } = require("express");
+// const { query } = require("express");
 
 // Application setup
 const server = express();
@@ -31,11 +31,12 @@ const client = new pg.Client(process.env.DATABASE_URL);
 server.set("view engine", "ejs");
 server.use(express.urlencoded({ extended: true }));
 
-//////////////////////// ROUTES //////////////////////////////
-/////// Home //////
+
 server.get("/", (req, res) => {
-  res.status(200).send("/public/index");
+  res.status(200).render("/public/index");
 });
+
+
 
 /////// Employment API //////
 
@@ -60,14 +61,14 @@ server.get("/work", (req, res) => {
 // constructor for the Work
 function Work(item) {
   this.url = item.url,
-  this.created_at = item.created_at,
-  this.company = item.company,
-  this.title = item.title,
-  this.type = item.type,
-  this.location = item.location,
-  this.description = item.description,
-  this.company_logo = item.company_logo ? item.company_logo : `https://image.flaticon.com/icons/svg/3143/3143340.svg`,
-  this.how_to_apply = item.how_to_apply
+    this.created_at = item.created_at,
+    this.company = item.company,
+    this.title = item.title,
+    this.type = item.type,
+    this.location = item.location,
+    this.description = item.description,
+    this.company_logo = item.company_logo ? item.company_logo : `https://image.flaticon.com/icons/svg/3143/3143340.svg`,
+    this.how_to_apply = item.how_to_apply
 }
 
 /////// Courses API //////
@@ -93,12 +94,12 @@ server.get("/courses", (req, res)=>{
 // constructor for the Work
 function Course(item) {
   this.name = item.name,
-  this.primaryLanguages = item.primaryLanguages[0],
-  this.certificates = item.certificates,
-  this.categories = item.categories,
-  this.photoUrl = item.photoUrl,
-  this.description = item.description,
-  this.previewLink = `https://www.coursera.org/programs/talent-beyond-borders-learning-program-wsf3c`
+    this.primaryLanguages = item.primaryLanguages[0],
+    this.certificates = item.certificates,
+    this.categories = item.categories,
+    this.photoUrl = item.photoUrl,
+    this.description = item.description,
+    this.previewLink = `https://www.coursera.org/programs/talent-beyond-borders-learning-program-wsf3c`
 }
 
 /////// Quizzes API //////
@@ -154,14 +155,17 @@ function Quizze(item) {
 }
 
 ////////////// UpDate HireMe //////////////
-server.put('/upDate/:userDetils.id', (req, res)=>{
+// server.put('/upDate/:userDetils.id', (req, res)=>{
 
+// })
+
+// server.get('/prof', (req, res)=>{
+//   res.render("basics/profile")
+// })
+
+server.get('/sign', (req, res)=>{
+  res.render("basics/sign")
 })
-
-server.get('/prof', (req, res)=>{
-  res.render("basics/profile")
-})
-
 
 ////////////// Is User //////////////
 
@@ -173,10 +177,6 @@ server.get('/prof', (req, res)=>{
 //     
 //   }
 // })
-
-
-
-
 
 
 
@@ -194,7 +194,13 @@ server.use((Error, req, res) => {
 
 // this is will tell the port to listen to this server I think and make sure the database works fine
 // client.connect().then(() => {
-server.listen(PORT, () => {
-  console.log(`do not kill me please ${PORT}`);
-});
+client.connect(() => {
+
+  server.listen(PORT, () => {
+    console.log(`do not kill me please ${PORT}`);
+  });
+
+})
 // });
+
+

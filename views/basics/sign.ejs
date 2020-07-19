@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style/style.css">
+    <title>Sign_in</title>
+</head>
+<body>
+     <section>
+         <div class="container">
+             <div class="user signinBx">
+                 <div class="imgBx"><img src="images/1.png" alt=""> </div>
+                     <div class="formBx">
+                         <form action="/signin" method="post">
+                             <h2>Sign in</h2>
+                             <input type="text" placeholder="User Name">
+                             <input type="password" placeholder="Password">
+                             <input type="submit" value="Login">
+                             <p class="signup">dont have an account?<a href="#" onclick="toggleForm()">Sign Up</a></p>
+                         </form>
+                     </div>
+             </div>
+
+             <div class="user signupBx">
+                    <div class="formBx">
+                        <form action="">
+                            <h2>Create an Account</h2>
+                            <input type="text" placeholder="User Name">
+                            <input type="email" placeholder="Email">
+                            <input type="password" placeholder="Password">
+                            <input type="password" placeholder="Confairm Password">
+                            <input type="submit" value="Sign Up">
+                            <p class="signup">Already have an account?<a href="#" onclick="toggleForm()">Sign In</a></p>
+                        </form>
+                    </div>
+                <div class="imgBx"><img src="images/2.png" alt=""> </div>
+            </div>
+         </div>
+     </section>
+     <script>
+         function toggleForm(){
+            let container = document.querySelector('.container');
+            container.classList.toggle('active')
+         }
+     </script>
+</body>
+</html>
