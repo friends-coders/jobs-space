@@ -52,7 +52,7 @@ server.get("/work", (req, res) => {
       res.render("basics/work", {workinfo : workData});
     });
   }else{
-    res.render("basics/work")
+    res.render("basics/work", {workinfo : ""})
   }
 
 });
@@ -85,7 +85,7 @@ server.get("/courses", (req, res)=>{
         res.render("basics/coursat", {courseInfo : courseData});
       });
     }else{
-      res.render("basics/coursat")
+      res.render("basics/coursat", {courseInfo : ''})
     }
 
 })
@@ -116,10 +116,15 @@ server.get("/quizzes", (req, res)=>{
         return new Quizze(value);
       });
       // res.status(200).json(courseData)
-      res.render("basics/quizzat", {quizzeInfo : quizzeData});
+      let questions = [];
+      for(let i =0; i < 5; i++){
+        questions.push(quizzeData.splice((Math.floor(Math.random()*((quizzeData.length-1)-0+1))), 1))
+      }
+      console.log(questions)
+      res.render("basics/quizzat", {quizzeInfo : questions});
     });
   }else{
-    res.render("basics/quizzat");
+    res.render("basics/quizzat", {quizzeInfo : ''});
   }
 
 
@@ -132,7 +137,6 @@ function Quizze(item) {
   this.correct_answer = item.correct_answer,
   this.difficulty = item.difficulty
 }
-
 
 
 

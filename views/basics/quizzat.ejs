@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <title>Quizzat</title>
 </head>
 
@@ -17,6 +18,29 @@
             <button>Submit</button>
         </form>
 
+        <div>
+            <% if(quizzeInfo.length != 0){ %>
+                <form action="/results" method="post">
+                    <% quizzeInfo.forEach((item, idx)=>{ %>
+                        <h2> Question: <%= idx+1 %> </h2>
+                        <h3> <%= item[0].question %> </h3>
+                        
+                        <input type="radio" name="anwer<%= idx %>" value="answer_a"></input><label for="anwer1"> <%= item[0].answers.answer_a %> </label> <br>
+                        <input type="radio" name="anwer<%= idx %>" value="answer_b"></input><label for="anwer2"> <%= item[0].answers.answer_b %> </label> <br>
+                        <% if(item[0].answers.answer_c != null){ %>
+                        <input type="radio" name="anwer<%= idx %>" value="answer_c"></input><label for="anwer3"> <%= item[0].answers.answer_c %> </label> <br>
+                        <% }
+                        if(item[0].answers.answer_d != null){ %>
+                        <input type="radio" name="anwer<%= idx %>" value="answer_d"></input><label for="anwer4"> <%= item[0].answers.answer_d %> </label> <br>
+                        <% } %>
+                        <br> <br>
+
+              <%    }) %>
+                    <button> Submit </button>
+                </form>
+            <% } %>
+        </div>
     </main>
+    <script src="/javascript/app.js"></script>
 </body>
 </html>
