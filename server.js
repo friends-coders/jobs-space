@@ -330,7 +330,11 @@ server.get('/profile', (req, res)=>{
 // })
 
 
+// About Us
+server.get('/team',(req,res)=>{
+res.render('basics/about-us');
 
+});
 
 
 //  this is for all faild routes that the user might insert
