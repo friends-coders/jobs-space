@@ -4,15 +4,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <%- include('../layout/head.ejs') %>
     <title>Coursat</title>
+    <%- include('../layout/head.ejs') %>
 </head>
 
 <body>
     <header>
-
+        <%- include('../layout/header.ejs') %>
     </header>
     <main>
+        <%- include('../layout/main-load.ejs') %>
+        <!-- main in this page -->
         <form action="/courses" method="get">
             <input type="text" name="couresName">
             <button>Submit</button>
@@ -20,27 +22,31 @@
         <div>
             <% if(courseInfo.length != 0){ 
                 courseInfo.forEach(item =>{ %>
-                <div>
-                    <h2> <%= item.name %></h2>
-                    <img src="<%= item.photoUrl %>" width="100px" height="100px">
+            <div>
+                <h2> <%= item.name %></h2>
+                <img src="<%= item.photoUrl %>" width="100px" height="100px">
 
-                    <h4> <% item.categories.join(', ').split(' ').forEach(elem=>{ %>
-                        <span> <%= elem %> </span>
+                <h4> <% item.categories.join(', ').split(' ').forEach(elem=>{ %>
+                    <span> <%= elem %> </span>
                     <% }); %> </h4>
 
-                    <h4> <%= item.primaryLanguages %> </h4>
+                <h4> <%= item.primaryLanguages %> </h4>
 
-                    <h4> <% item.certificates.join(', ').split(' ').forEach(elem=>{ %>
-                        <span> <%= elem %> </span>
+                <h4> <% item.certificates.join(', ').split(' ').forEach(elem=>{ %>
+                    <span> <%= elem %> </span>
                     <% }); %> </h4>
-                    
-                   <a href="<%= item.how_to_apply %>">Click to apply</a>  
 
-                    <p> <%= item.description %> </p>
-                </div>
+                <a href="<%= item.how_to_apply %>">Click to apply</a>
+
+                <p> <%= item.description %> </p>
+            </div>
             <% });
             } %>
         </div>
     </main>
+    <footer>
+        <%- include('../layout/footer.ejs') %>
+    </footer>
 </body>
+
 </html>
