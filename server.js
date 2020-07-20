@@ -398,7 +398,11 @@ VALUES ($1,$2,$3,$4,$5,$6,$7);` ;
 
 ///////////////Hire me End\\\\\\\\\\\\\\\\\\\\\\\
 
+// About Us
+server.get('/team',(req,res)=>{
+res.render('basics/about-us');
 
+});
 
 
 //  this is for all faild routes that the user might insert
