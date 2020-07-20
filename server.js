@@ -17,10 +17,12 @@ const ejs = require("ejs");
 
 // this is for using REST and READ
 const methodOverride = require("method-override");
+const bodyParser = require('body-parser');
 
 // this is for using the postergres for the database
 const pg = require("pg");
 // const { query } = require("express");
+
 
 // Application setup
 const server = express();
@@ -31,8 +33,11 @@ const client = new pg.Client(process.env.DATABASE_URL);
 server.set("view engine", "ejs");
 server.use(express.urlencoded({ extended: true }));
 
+server.use(bodyParser.json());
+
 
 server.get("/", (req, res) => {
+  // console.log(req.body)
   res.status(200).render("/public/index");
 });
 
@@ -163,8 +168,114 @@ function Quizze(item) {
 //   res.render("basics/profile")
 // })
 
+let user;
+let pass;
+let userIn = {};
+
+
+server.post('/data', function(req, res){
+  // console.log('body: ',  req.body);
+  userIn.user = req.body.param;
+  user = req.body.param;
+  userIn.pass = req.body.param2;
+  pass = req.body.param2;
+  // console.log(userIn)
+});
+
 server.get('/sign', (req, res)=>{
+  console.log(userIn)
   res.render("basics/sign")
+})
+
+
+
+server.post('/signin', (req, res)=>{
+  const item = req.body;
+  if(item.user_name == userIn.user && item.password == userIn.pass){
+    let SQL1 = `SELECT * FROM detials WHERE user_name='${userIn.user}';`
+    // let SQL2 = `SELECT * FROM users WHERE user_name='${userIn.user}' AND password='${userIn.pass}';`
+    client.query(SQL1).then(result =>{
+      userIn.userDetailsA = result.rows[0];
+      res.render("basics/profile", { user : userIn});
+    })
+  }else{
+    let SQL1 = `SELECT * FROM users WHERE user_name='${item.user_name}';`
+    client.query(SQL1).then(result =>{
+      // console.log(result.rows)
+      if(result.rows.length == 0){
+        res.render("basics/sign", {statue: false})
+      }else{
+        userIn.userDetailsA = result.rows[0];
+        res.render("basics/profile", { user : userIn, statue: true});
+      }
+    })
+  }
+
+})
+
+
+
+server.post('/signup', (req, res)=>{
+  const item = req.body;
+  let SQL = `INSERT INTO users (user_name, password, email) VALUES($1, $2, $3);`;
+  let SQL2 = `SELECT * FROM users WHERE user_name=$1 AND email=$3 AND password=$2;`;
+  
+  const safeValues = [item.user_name, item.password, item.email];
+
+  client.query(SQL2, safeValues).then(data2=>{
+    if(data2.rows.length == 0){
+      client.query(SQL, safeValues)
+      .then( data=>{
+        client.query(SQL2, safeValues).then(data3=>{
+          userIn.userDetailsB = data3.rows[0];
+          // console.log(userIn)
+          res.render("basics/profile", { user : userIn});
+        })
+      })
+    }else{
+      
+      userIn.userDetailsB = data2.rows[0];
+      // console.log(userIn)
+      res.render("basics/profile", { user : userIn});
+    }
+   
+  })
+})
+
+server.post('/update', (req, res)=>{
+  let {gender,major,bio,education,gitHub,twitar,linkedIn} = req.body;
+  // let SQL1 = `UPDATE users SET user_name=$1,password=$2 WHERE user_name='${user}';`;
+  let SQL2 = `UPDATE detials SET user_name=$1,gender=$2,education=$3,major=$4,bio=$5,github=$6,twitar=$7,linkedIn=$8 WHERE user_name='${userIn.user}';`;
+  let SQL3 = `SELECT * FROM detials WHERE user_name='${userIn.user}';`;
+  let SQL4 = `INSERT INTO detials (user_name, gender, education, major, bio, github, twitar, linkedIn) VALUES($1, $2, $3, $4, $5, $6, $7, $8);`;
+  // let safeValues1 = [name, password];
+  let safeValues2 = [userIn.user,gender,education,major,bio,gitHub,twitar,linkedIn];
+
+
+  // client.query(SQL1, safeValues1).then(() => {
+    client.query(SQL3).then((resultsss) => {
+      // console.log(resultsss.rows)
+      if(resultsss.rows.length == 0){
+        client.query(SQL4, safeValues2).then(() => {
+          client.query(SQL3).then((results) => {
+            // console.log(results.rows)
+            userIn.userDetailsA = results.rows[0];
+            res.render("basics/profile", { user : userIn});
+          })
+        })
+      }else{
+        client.query(SQL2, safeValues2).then(() => {
+          client.query(SQL3).then((results) => {
+            // console.log(results.rows)
+            userIn.userDetailsA = results.rows[0];
+            res.render("basics/profile", { user : userIn});
+          })
+        }) 
+      }
+    })
+   
+  // })
+  console.log(userIn)
 })
 
 ////////////// Is User //////////////
@@ -193,14 +304,11 @@ server.use((Error, req, res) => {
 });
 
 // this is will tell the port to listen to this server I think and make sure the database works fine
-// client.connect().then(() => {
-client.connect(() => {
 
+client.connect().then(()=>{
   server.listen(PORT, () => {
     console.log(`do not kill me please ${PORT}`);
   });
-
 })
-// });
 
 

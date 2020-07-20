@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <link rel="stylesheet" href="style/style.css">
     <title>Sign_in</title>
 </head>
@@ -14,8 +15,8 @@
                      <div class="formBx">
                          <form action="/signin" method="post">
                              <h2>Sign in</h2>
-                             <input type="text" placeholder="User Name">
-                             <input type="password" placeholder="Password">
+                             <input type="text" name="user_name" placeholder="User Name">
+                             <input type="password" name="password" placeholder="Password">
                              <input type="submit" value="Login">
                              <p class="signup">dont have an account?<a href="#" onclick="toggleForm()">Sign Up</a></p>
                          </form>
@@ -24,11 +25,11 @@
 
              <div class="user signupBx">
                     <div class="formBx">
-                        <form action="">
+                        <form action="/signup" id="SUForm" method="post">
                             <h2>Create an Account</h2>
-                            <input type="text" placeholder="User Name">
-                            <input type="email" placeholder="Email">
-                            <input type="password" placeholder="Password">
+                            <input type="text" name="user_name" placeholder="User Name">
+                            <input type="email" name="email" placeholder="Email">
+                            <input type="password" name="password" placeholder="Password">
                             <input type="password" placeholder="Confairm Password">
                             <input type="submit" value="Sign Up">
                             <p class="signup">Already have an account?<a href="#" onclick="toggleForm()">Sign In</a></p>
@@ -44,5 +45,6 @@
             container.classList.toggle('active')
          }
      </script>
+     <script src="javascript/app.js"></script>
 </body>
 </html>

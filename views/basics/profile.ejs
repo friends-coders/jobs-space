@@ -18,16 +18,25 @@
         </div>
         <div> <!-- main-details: name, email, password -->
             <h2>Main Details:</h2>
-            <!-- <h3> <= userDetails.name > </h3>
-                <h4> <= userDetils.email > </h4>
-                <h4> <= userDetils.password > </h4> -->
+            <% if(user.userDetailsB){ %>
+                <h3> <%= user.userDetailsB.user_name %> </h3>
+                <h4> <%= user.userDetailsB.email %> </h4>
+          <%  }else{ %>
+                <h3 id="UN"> <%= user.userDetailsA.user_name %> </h3>
+                <h4> <%= user.userDetailsA.email %> </h4>
+            <i id="ST"> <%= statue %> </i>
+        <%  } %>
+
+ 
         </div>
         <div> <!-- more-details: gender, spelize, education, bio  -->
             <h2>More Details:</h2>
-            <!-- <h4> <= userDetils.gender > </h4> 
-                <h4> <= userDetils.education > </h4>
-                <h4> <= userDetils.major > </h4>
-                <textarea rows="10" cols="25"> <= userDetils.bio > </textarea> -->
+            <% if(user.userDetailsA){ %>
+                <h4> <%= user.userDetailsA.gender %> </h4> 
+                    <h4> <%= user.userDetailsA.education %> </h4>
+                    <h4> <%= user.userDetailsA.major %> </h4>
+                    <p> <%= user.userDetailsA.bio %> </p>
+          <%  } %>
         </div>
         <div> <!-- certifcates -->
             <!-- < userDetils.cretrifcates.forEach(item=>{ >
@@ -41,21 +50,31 @@
 
         <div> <!-- Contact Me -->
             <h2>Contact Me:</h2>
-            <!-- <h4> <= userDetils.twitar > </h4>
-                <h4> <= userDetils.gitHub > </h4>
-                <h4> <= userDetils.linkedIn > </h4> -->
+            <% if(user.userDetailsA){ %>
+            <h4> <%= user.userDetailsA.twitar %> </h4>
+                <h4> <%= user.userDetailsA.github %> </h4>
+                <h4> <%= user.userDetailsA.linkedin %> </h4>
+        <%  } %>
         </div>
-            <!-- < if(isUser.user_name == userDetails.name && isUser.user_email == userDetils.email){ >
+       <% let x;
+        if(user.userDetailsB){
+            x =  user.userDetailsB;
+        }else{
+            x =  user.userDetailsA; 
+        }
+            if(user.user == x.user_name && user.pass == x.password){ %>
             <button>Update My Info</button>
             
 
-                <form action="/update/<= userDetils.id >?_method=put" method="post">
+                <form action="/update" method="post">
 
-                <label for="">Name:<input type="text" name="name" value="<= userDetils.name >"></label>
-                <label for="">password:<input type="text" name="password" value="<= userDetils.password >"></label>
-                <label for="">Major:<input type="text" name="major" value="<= userDetils.major >"></label>
-                <label for="">Bio:<input type="text" name="bio" value="<= userDetils.bio >"></label>
-                <label for="">Education:<input type="text" name="education" value="<= userDetils.education >"></label>
+                <label for="">Gender:<input type="text" name="gender"></label>
+                <label for="">Major:<input type="text" name="major"></label>
+                <label for="">Bio:<input type="text" name="bio"></label>
+                <label for="">Education:<input type="text" name="education"></label>
+                <label for="">Twitar:<input type="text" name="twitar" value=""></label>
+                <label for="">GitHub:<input type="text" name="gitHub" value=""></label>
+                <label for="">LinkedIn:<input type="text" name="linkedIn" value=""></label>
 
                 <button type="submit">Save</button>
         
@@ -63,18 +82,18 @@
             
             <button>Update My HireMe Post</button>
 
-                <form action="/update/<= userDetils.id >?_method=put" method="post">
+                <!-- <form action="" method="post">
 
-                <label for="">Describion:<input type="text" name="description" value="<= userDetils.desc >"></label>
-                <label for="">Twitar:<input type="text" name="twitar" value="<= userDetils.twitar >"></label>
-                <label for="">GitHub:<input type="text" name="gitHub" value="<= userDetils.gitHub >"></label>
-                <label for="">LinkedIn:<input type="text" name="linkedIn" value="<= userDetils.linkedIn >"></label>
+                <label for="">Describion:<input type="text" name="description" value=""></label>
+                <label for="">Twitar:<input type="text" name="twitar" value=""></label>
+                <label for="">GitHub:<input type="text" name="gitHub" value=""></label>
+                <label for="">LinkedIn:<input type="text" name="linkedIn" value=""></label>
 
                 <button type="submit">Save</button>
         
-                </form>
+                </form> -->
             <button>Delete My Profile</button>
-            <  } > -->
+            <%  } %>
     </main>
     <script src="/javascript/app.js"></script>
 </body>
