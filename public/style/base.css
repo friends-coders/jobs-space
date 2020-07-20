@@ -1,18 +1,19 @@
-@import url('https://fonts.googleapis.com/css2?family=Baloo+Thambi+2:wght@500&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Baloo+Thambi+2:wght@500&display=swap");
 /* 
 font-family: 'Baloo Thambi 2', cursive;
  */
- * {
-  font-family: 'Baloo Thambi 2', cursive;
+* {
+  font-family: "Baloo Thambi 2", cursive;
+  box-sizing: border-box;
 }
 
-#navbar  {
+#navbar {
   height: 60px;
   background: #111111;
   width: 100%;
   text-align: center;
 }
-.navbar-nav div{
+.navbar-nav div {
   margin: 0;
   padding: 0;
   margin: auto auto;
@@ -22,10 +23,10 @@ font-family: 'Baloo Thambi 2', cursive;
   margin-left: 24px;
   line-height: 60px;
   color: #5c6ac4;
-  font-family: 'Baloo Thambi 2';
+  font-family: "Baloo Thambi 2";
   font-size: 24px;
 }
-#navbar h1 a:hover{
+#navbar h1 a:hover {
   cursor: pointer;
   color: #828cc9;
 }
@@ -46,7 +47,6 @@ font-family: 'Baloo Thambi 2', cursive;
   font-size: 20px;
 }
 
-
 #navbar button {
   padding: 4px 20px;
   background: none;
@@ -59,4 +59,100 @@ font-family: 'Baloo Thambi 2', cursive;
 #navbar button:hover {
   background: #5c6ac4;
   cursor: pointer;
+}
+
+/* work.ejs page */
+#input-Work {
+  margin: 6% 0% 16% 6%;
+  /* margin-left: 16%; */
+  width: 60%;
+  padding: 8px;
+}
+#work-button {
+  padding: 10px 80px;
+  background: #5c6ac4;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  box-shadow: #111111a8 1px 1px 2px 1px;
+  margin-left: 40px;
+  margin-top: 12px;
+}
+#work-button:hover {
+  background-color: #828cc9;
+  box-shadow: #111111a8 1px 1px 8px 1px;
+}
+
+/* ////////////////////////////// */
+#card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  margin: auto;
+  text-align: center;
+  font-family: arial;
+  background: #f9f9f9;
+}
+
+.title {
+  color: grey;
+  font-size: 18px;
+}
+
+#contact-button {
+  border: none;
+  outline: 0;
+  display: inline-block;
+  padding: 8px;
+  color: white;
+  background-color: #000;
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+  font-size: 18px;
+}
+
+#contact-button:hover,
+a:hover {
+  opacity: 0.7;
+}
+/* flex divs */
+#flex {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+  justify-content: space-around;
+}
+#card {
+  border-top: 4px solid #5c6ac4;
+  border-bottom: 4px solid #5c6ac4;
+  border-top-left-radius: 6px;
+  border-bottom-left-radius: 6px;
+  border-top-right-radius: 6px;
+  border-bottom-right-radius: 6px;
+  width: 44%;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.collapsible:hover {
+  opacity: 0.7;
+}
+
+.collapsible {
+  background-color: #828cc9;
+  color: white;
+  cursor: pointer;
+  padding: 10px;
+  width: 40%;
+  border: none;
+  text-align: center;
+  outline: none;
+  border-radius: 30px;
+  margin-bottom: 10px;
+}
+.content {
+  padding: 0 18px;
+  display: none;
+  overflow: hidden;
+  background-color: #f1f1f1;
 }
