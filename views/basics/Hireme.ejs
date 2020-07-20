@@ -4,12 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://kit.fontawesome.com/3d3f8ea01d.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="style/style.css">
     <title>Hire Me</title>
 </head>
 <body>
      <div>
-         <%=
+        <% emplo.forEach(item=>{ %>
+           <div>
+            <h2><%= item.user_name %></h2>
+            <h4><%= item.education %></h4>
+            <h4><%= item.major %></h4>
+            <h5><%= item.descr %></h5>
+            <i class="far fa-envelope" href=''><a href="<%= item.email %>"></a></i>
+            <i class="fab fa-github" href=''><a href="<%= item.github %>"></a></i>
+            <i class="fab fa-twitter-square" href=''><a href="<%= item.twitar %>"></a></i>
+            <i class="fab fa-linkedin" href=''><a href="<%= item.linkedIn %>"></a></i>
+           </div> 
+    <%  }) %>
      </div>
     <script src="javascript/app.js"></script>
 </body>

@@ -277,20 +277,23 @@ server.post('/update', (req, res)=>{
     })
    
   // })
-  console.log(userIn)
+  // console.log(userIn)
 })
 
 server.post('/updateHireMe', (req, res)=>{
   let {user_name,education,major,email,twitar,github,linkedIn,descr} = req.body;
   let SQL1 = `SELECT * FROM hireme WHERE user_name='${userIn.user}';`
-  let SQL2 = `UPDATE hireme SET user_name=$1,education=$2,major=$3,email=$4,twitar=$5,github=$6,twitar=$7,linkedIn=$8,descr=$9 WHERE user_name='${userIn.user}';`
-  let SQL3 = `INSERT INTO hireme (user_name, education, major, email, twitar, github, linkedIn, descr) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9);`
+  let SQL2 = `UPDATE hireme SET user_name=$1,education=$2,major=$3,email=$4,twitar=$5,github=$6,linkedIn=$7,descr=$8 WHERE user_name='${userIn.user}';`
+  let SQL3 = `INSERT INTO hireme (user_name, education, major, email, twitar, github, linkedIn, descr) VALUES($1, $2, $3, $4, $5, $6, $7, $8);`
   let safeValues = [user_name,education,major,email,twitar,github,linkedIn,descr];
 
   client.query(SQL1).then((resultsss) => {
     if(resultsss.rows.length == 0){
+      console.log(resultsss.rows);
       client.query(SQL3, safeValues).then(() => { res.render("basics/hireme") })
     }else{
+      console.log(resultsss.rows);
+      
       client.query(SQL2, safeValues).then(() => { res.render("basics/hireme") }) 
     }
   })
@@ -303,7 +306,17 @@ server.get('/signOut', (req, res)=>{
   res.render("basics/sign")
 })
 
+server.get('/hireMe', (req, res)=>{
+  let SQL = `SELECT * FROM hireme;`
+  client.query(SQL).then((result) => {
+    // console.log(result.rows)
+    res.render("basics/hireme", { emplo : result.rows})
+  })
+})
 
+server.get('/profile', (req, res)=>{
+  res.render("basics/profile", { user : userIn, statue: true, passw : pass})
+})
 
 ////////////// Is User //////////////
 
