@@ -282,3 +282,43 @@ h1 {
 
 
 /* end about us page */
+
+/* courses card start */
+
+
+#couresCard {
+    border-top: 4px solid #5c6ac4;
+    border-bottom: 4px solid #5c6ac4;
+    border-top-left-radius: 6px;
+    border-bottom-left-radius: 6px;
+    border-top-right-radius: 6px;
+    border-bottom-right-radius: 6px;
+    width: 100%;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+
+
+  #courseCardImg img{
+    border-radius: 0 0 0 20%;
+    box-shadow: 8px 10px 5px 0px #888888;
+    float: right;
+    padding: 0 0;
+    width: 110px;
+  }
+  #courseCardPara{
+    width: 800px;
+    text-align: justify;
+    margin: 0 auto;
+    
+
+  }
+  
+  
+  
+ 
+/* courses card end */
