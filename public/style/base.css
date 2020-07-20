@@ -63,9 +63,9 @@ font-family: 'Baloo Thambi 2', cursive;
 
 /* work.ejs page */
 #input-Work {
-  margin: 6% 0% 16% 6%;
+  margin: 6% 0% 16% 10%;
   /* margin-left: 16%; */
-  width: 60%;
+  width: 57%;
   padding: 8px;
 }
 #work-button {
@@ -114,13 +114,13 @@ font-family: 'Baloo Thambi 2', cursive;
 a:hover {
   opacity: 0.7;
 }
+
 /* flex divs */
+
 #flex {
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+  flex-direction: column;
   width: 100%;
-  justify-content: space-around;
 }
 #card {
   border-top: 4px solid #5c6ac4;
@@ -129,9 +129,42 @@ a:hover {
   border-bottom-left-radius: 6px;
   border-top-right-radius: 6px;
   border-bottom-right-radius: 6px;
-  width: 44%;
+  width: 80%;
   margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   margin-bottom: 20px;
+}
+.flex-row h2 {
+  text-align: left;
+  color: #111111;
+  padding-left: 10px;
+  width: 80%;
+  margin: 0px 0px 0px 10px;
+}
+.flex-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+  align-items: flex-start;
+}
+.flex-row img {
+  float: right;
+  padding: 8px 8px 0px 0px;
+  width: 110px;
+}
+#card h4 {
+  color: #5c6ac4;
+  font-size: 18px;
+  text-align: justify;
+}
+#card h4 span {
+  padding-left: 16px;
+  font-size: 18px;
+  color: #111111;
+margin-left: 90px;
 }
 
 .collapsible:hover {
@@ -143,16 +176,17 @@ a:hover {
   color: white;
   cursor: pointer;
   padding: 10px;
-  width: 40%;
+  width: 100%;
   border: none;
-  text-align: center;
+  text-align: justify;
   outline: none;
-  border-radius: 30px;
-  margin-bottom: 10px;
 }
 .content {
   padding: 0 18px;
   display: none;
   overflow: hidden;
   background-color: #f1f1f1;
+}
+.content span {
+  color: #5c6ac4;
 }
