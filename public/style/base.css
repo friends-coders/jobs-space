@@ -42,7 +42,7 @@ font-family: 'Baloo Thambi 2', cursive;
 }
 
 #navbar ul {
-  margin-left: 22%;
+  margin-left: 16%;
 }
 
 #navbar ul li {
@@ -53,8 +53,8 @@ font-family: 'Baloo Thambi 2', cursive;
   float: left;
   font-size: 20px;
 }
-#navbar ul li a:hover{
-    color: white;
+#navbar ul li a:hover {
+  color: white;
 }
 #navbar button {
   padding: 4px 20px;
@@ -103,7 +103,7 @@ font-family: 'Baloo Thambi 2', cursive;
   margin: auto;
   text-align: center;
   font-family: arial;
-  background: #f9f9f9;
+  background: white;
 }
 
 .title {
@@ -150,6 +150,10 @@ a:hover {
   flex-direction: column;
   justify-content: space-between;
   margin-bottom: 20px;
+  transition: 0.3s;
+}
+#card:hover {
+  transform: translate(0, -12px);
 }
 
 .flex-row h2 {
@@ -214,7 +218,7 @@ a:hover {
 }
 
 /*start about us page */
-
+/* 
 .bigcontainer {
   width: 85%;
   display: flex;
@@ -255,7 +259,7 @@ a:hover {
   width: 300px;
   border: 2px solid #5c6ac4;
 }
-h1#aboutUsHeading{
+h1#aboutUsHeading {
   margin-left: 44%;
   margin-top: 100px;
   margin-bottom: 100px;
@@ -274,7 +278,7 @@ h1#aboutUsHeading{
 
 .container2:hover .Appearing {
   display: block;
-}
+} */
 
 /* end about us page */
 
@@ -293,8 +297,11 @@ h1#aboutUsHeading{
   flex-direction: column;
   justify-content: space-between;
   margin-bottom: 20px;
+  transition: 0.3s;
 }
-
+#couresCard:hover {
+  transform: translate(0, -12px);
+}
 #courseCardImg img {
   border-radius: 0 0 0 20%;
   box-shadow: 8px 10px 5px 0px #888888;
