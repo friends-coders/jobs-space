@@ -199,14 +199,16 @@ server.post('/signin', (req, res)=>{
       res.render("basics/profile", { user : userIn});
     })
   }else{
-    let SQL1 = `SELECT * FROM users WHERE user_name='${item.user_name}';`
+    let SQL1 = `SELECT * FROM users WHERE user_name='${item.user_name}' AND password='${item.password}';`
     client.query(SQL1).then(result =>{
       // console.log(result.rows)
       if(result.rows.length == 0){
         res.render("basics/sign", {statue: false})
       }else{
         userIn.userDetailsA = result.rows[0];
-        res.render("basics/profile", { user : userIn, statue: true});
+        pass = item.password;
+        // console.log(userIn)
+        res.render("basics/profile", { user : userIn, statue: true, passw : pass});
       }
     })
   }
@@ -258,17 +260,17 @@ server.post('/update', (req, res)=>{
       if(resultsss.rows.length == 0){
         client.query(SQL4, safeValues2).then(() => {
           client.query(SQL3).then((results) => {
-            // console.log(results.rows)
+            console.log(results.rows)
             userIn.userDetailsA = results.rows[0];
-            res.render("basics/profile", { user : userIn});
+            res.render("basics/profile", { user : userIn, statue: true, passw : pass});
           })
         })
       }else{
         client.query(SQL2, safeValues2).then(() => {
           client.query(SQL3).then((results) => {
-            // console.log(results.rows)
+            console.log(results.rows)
             userIn.userDetailsA = results.rows[0];
-            res.render("basics/profile", { user : userIn});
+            res.render("basics/profile", { user : userIn, statue: true, passw : pass});
           })
         }) 
       }
@@ -277,6 +279,31 @@ server.post('/update', (req, res)=>{
   // })
   console.log(userIn)
 })
+
+server.post('/updateHireMe', (req, res)=>{
+  let {user_name,education,major,email,twitar,github,linkedIn,descr} = req.body;
+  let SQL1 = `SELECT * FROM hireme WHERE user_name='${userIn.user}';`
+  let SQL2 = `UPDATE hireme SET user_name=$1,education=$2,major=$3,email=$4,twitar=$5,github=$6,twitar=$7,linkedIn=$8,descr=$9 WHERE user_name='${userIn.user}';`
+  let SQL3 = `INSERT INTO hireme (user_name, education, major, email, twitar, github, linkedIn, descr) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9);`
+  let safeValues = [user_name,education,major,email,twitar,github,linkedIn,descr];
+
+  client.query(SQL1).then((resultsss) => {
+    if(resultsss.rows.length == 0){
+      client.query(SQL3, safeValues).then(() => { res.render("basics/hireme") })
+    }else{
+      client.query(SQL2, safeValues).then(() => { res.render("basics/hireme") }) 
+    }
+  })
+})
+
+server.get('/signOut', (req, res)=>{
+  user = '';
+  pass = '';
+  userIn = {};
+  res.render("basics/sign")
+})
+
+
 
 ////////////// Is User //////////////
 

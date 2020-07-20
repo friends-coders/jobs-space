@@ -56,6 +56,11 @@ $( document ).ready(function() {
     localStorage.setItem('pass', pp);
   }
 
+  // console.log($('#ST').text() )
+  if($('#ST').text() == "true"){
+    user = $('#UN').text();
+    set();
+  }
 
   var xhr = new XMLHttpRequest();
   var data = {
@@ -68,4 +73,11 @@ $( document ).ready(function() {
   };
   xhr.setRequestHeader('Content-Type', 'application/json');
   xhr.send(JSON.stringify(data));
+
+function signOut(){
+  user = 'guest';
+  pass = 'guest'; 
+}
+
+  
 });

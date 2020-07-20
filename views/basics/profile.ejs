@@ -19,12 +19,14 @@
         <div> <!-- main-details: name, email, password -->
             <h2>Main Details:</h2>
             <% if(user.userDetailsB){ %>
-                <h3> <%= user.userDetailsB.user_name %> </h3>
+                <h3><%= user.userDetailsB.user_name %></h3>
                 <h4> <%= user.userDetailsB.email %> </h4>
           <%  }else{ %>
                 <h3 id="UN"> <%= user.userDetailsA.user_name %> </h3>
                 <h4> <%= user.userDetailsA.email %> </h4>
-            <i id="ST"> <%= statue %> </i>
+                
+                    <i id="ST" style="display: none;"> <%= statue %> </i>
+              
         <%  } %>
 
  
@@ -57,14 +59,17 @@
         <%  } %>
         </div>
        <% let x;
+       let y;
         if(user.userDetailsB){
             x =  user.userDetailsB;
+            y = user;
         }else{
-            x =  user.userDetailsA; 
+            x =  user.userDetailsA;
+            y = passw;
         }
-            if(user.user == x.user_name && user.pass == x.password){ %>
+            if(user.user == x.user_name && y.pass == x.password){ %>
             <button>Update My Info</button>
-            
+            <%  } %>
 
                 <form action="/update" method="post">
 
@@ -72,9 +77,9 @@
                 <label for="">Major:<input type="text" name="major"></label>
                 <label for="">Bio:<input type="text" name="bio"></label>
                 <label for="">Education:<input type="text" name="education"></label>
-                <label for="">Twitar:<input type="text" name="twitar" value=""></label>
-                <label for="">GitHub:<input type="text" name="gitHub" value=""></label>
-                <label for="">LinkedIn:<input type="text" name="linkedIn" value=""></label>
+                <label for="">Twitar:<input type="text" name="twitar"></label>
+                <label for="">GitHub:<input type="text" name="gitHub"></label>
+                <label for="">LinkedIn:<input type="text" name="linkedIn"></label>
 
                 <button type="submit">Save</button>
         
@@ -82,18 +87,22 @@
             
             <button>Update My HireMe Post</button>
 
-                <!-- <form action="" method="post">
+                <form action="/updateHireMe" method="post">
 
-                <label for="">Describion:<input type="text" name="description" value=""></label>
+                <label for="">YourName:<input type="text" name="user_name" value="<%= user.userDetailsA.user_name %>" disabled></label>
+                <label for="">Education:<input type="text" name="education" value=""></label>
+                <label for="">Major:<input type="text" name="major" value=""></label>
+                <label for="">Email:<input type="text" name="email" value=""></label>
                 <label for="">Twitar:<input type="text" name="twitar" value=""></label>
-                <label for="">GitHub:<input type="text" name="gitHub" value=""></label>
+                <label for="">GitHub:<input type="text" name="github" value=""></label>
                 <label for="">LinkedIn:<input type="text" name="linkedIn" value=""></label>
+                <label for="">Describion:<textarea rows="10" cols="25" type="text" name="descr" value=""></textarea></label>
 
                 <button type="submit">Save</button>
         
-                </form> -->
+                </form>
             <button>Delete My Profile</button>
-            <%  } %>
+            
     </main>
     <script src="/javascript/app.js"></script>
 </body>
