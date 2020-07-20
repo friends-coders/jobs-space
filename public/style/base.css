@@ -9,6 +9,13 @@ font-family: 'Baloo Thambi 2', cursive;
   box-sizing: border-box;
 }
 
+#error{
+    background-image: url(/images/404.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+    
+
 #navbar {
   height: 60px;
   background: #111111;
