@@ -118,15 +118,18 @@
       </form>
       <div id="flex">
         <% if(courseInfo.length != 0){ courseInfo.forEach(item =>{ %>
-        <div id="card">
-          <img src="<%= item.photoUrl %>" width="150px" height="150px" />
-          <h2><%= item.name %></h2>
-          <ul id="cardUL">
-            <li>        
-              <i class="fas fa-globe"></i> <%=
-              item.primaryLanguages.toUpperCase() %>
-            </li>      
-          <p><%= item.description.slice(0,250) %>. . .</p>
+        <div id="couresCard">
+            <div class="flex-row" id="courseCardImg">
+            <h2><%= item.name %></h2>
+            <img src="<%= item.photoUrl %>" width="150px" height="150px" />
+            </div>
+          <!-- <ul id="cardUL"></ul> -->
+                   
+            
+                 
+          <p  id="courseCardPara"><i class="fas fa-globe"></i> Course Language : <%=
+            item.primaryLanguages.toUpperCase() %> <br>
+              <%= item.description.slice(0,250) %>. . .</p>
             
           <button type="button" class="collapsible">Read more</button>
           <div class="content">
