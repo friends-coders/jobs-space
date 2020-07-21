@@ -17,10 +17,13 @@
         <%- include('../layout/main-load.ejs') %>
         <!-- this is the main -->
         <!-- start from here -->
-        <form action="/quizzes" method="get">
-            <input type="text" name="quizzeTag">
-            <button>Submit</button>
-        </form>
+        
+            <form action="/quizzes" method="get">
+                <input type="text" name="quizzeTag">
+                <button>Submit</button>
+            </form>
+ 
+            <h1><%= sss %></h1>
 
         <div>
             <% if(quizzeInfo.length != 0){ %>
