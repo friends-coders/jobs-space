@@ -43,19 +43,41 @@ server.get("/", (req, res) => {
 
 
 
-/////// Employment API //////
-let offers = [];
+//////////////////////////////////////////////////// http req data /////////////////////////////////////////////////////
+let user;
+let pass;
+let userIn = {};
+
+
+server.post('/data', function(req, res){
+  // console.log('body: ',  req.body);
+  userIn.user = req.body.param;
+  user = req.body.param;
+  userIn.pass = req.body.param2;
+  pass = req.body.param2;
+
+});
+
+
+
+///////////////////////////////////////////////// Employment API ////////////////////////////////////////////////////////
+let offers = []; // :)
+let offerPrm;
 server.get("/work", (req, res) => {
   offers = [];
-  let city = req.query.city;
-  let url = `https://jobs.github.com/positions.json?description=${city}&location=new+york`;
+  // console.log(req.query)
+  let field = req.query.field;
+  let url = `https://jobs.github.com/positions.json?page=1&search=${field}`;
 
-  if(city){
+  if(field){
     superagent.get(url).then((result) => {
       let resultJSON = result.body;
+      console.log(result.body)
       let workData = resultJSON.map((value) => {
         return new Work(value);
       });
+      offers = workData; // :)
+      offerPrm = field;
       res.render("basics/work", {workinfo : workData});
     });
   }else{
@@ -63,6 +85,31 @@ server.get("/work", (req, res) => {
   }
 
 });
+
+server.get("/work/:idx", (req, res) => {
+  // console.log(req.params.idx);
+  if(userIn.user != 'guest'){
+  let job = req.params.idx;
+  if(/(java)\W*/g.test(offerPrm)){
+    offerPrm = 'JS Coding'
+  }else if(/(html)\W*/g.test(offerPrm)){
+    offerPrm = 'HTML'
+  }else if(/(linux)\W*/g.test(offerPrm)){
+    offerPrm = 'Linux'
+  }else if(/(php)\W*/g.test(offerPrm)){
+    offerPrm = `PHP`
+  }
+  // console.log(offerPrm);
+  
+  let SQL = `SELECT * FROM certificates WHERE user_name='${userIn.user}';`;
+  client.query(SQL).then((result)=>{
+    if(result.rows.length != 0){
+      console.log(result.rows)
+      res.redirect('/quizzes?quizzeTag=javaScript')
+    }
+  })
+  }
+})
 
 // constructor for the Work
 function Work(item) {
@@ -77,8 +124,8 @@ function Work(item) {
     this.how_to_apply = item.how_to_apply
 }
 
-/////// Courses API //////
 
+/////////////////////////////////////////////////// Courses API ///////////////////////////////////////////////////////
 server.get("/courses", (req, res)=>{
   let couresName = req.query.couresName;
   let url = `https://api.coursera.org/api/courses.v1?q=search&query=${couresName}&fields=photoUrl,description,primaryLanguages,certificates,previewLink,categories`;
@@ -109,23 +156,10 @@ function Course(item) {
 }
 
 
-let user;
-let pass;
-let userIn = {};
-
-
-server.post('/data', function(req, res){
-  // console.log('body: ',  req.body);
-  userIn.user = req.body.param;
-  user = req.body.param;
-  userIn.pass = req.body.param2;
-  pass = req.body.param2;
-
-});
-
-/////// Quizzes API //////
+/////////////////////////////////////////////////////// Quizzes API ///////////////////////////////////////////////////
 let questions = [];
 let qSRes ='';
+let qSResQ;
 let qSP;
 
 server.get("/quizzes", (req, res)=>{
@@ -148,13 +182,16 @@ server.get("/quizzes", (req, res)=>{
       }
       // console.log(questions)
       qSRes = quizzeTag;
-      res.render("basics/quizzat", {quizzeInfo : questions});
+      qSResQ = quizzeTag;
+      res.render("basics/quizzat", {quizzeInfo : questions, statue : true});
     });
     }else{
-    res.render("basics/quizzat", {quizzeInfo : ''});
+    res.render("basics/quizzat", {quizzeInfo : '', statue : true});
   }
 })
 
+
+/////////////////////////////////////////////////// Results //////////////////////////////////////////////////////////////
 server.post('/results', (req, res)=>{
   // console.log(req.body)
   let trueA = 0;
@@ -199,11 +236,10 @@ server.post('/results', (req, res)=>{
           client.query(SQL2).then(result4 =>{
             // console.log(result4.rows)
             let results4 = result4.rows[0];
-            getAppointmet(statu).then((result6)=>{
-              
+            getAppointmet(statu).then((result6)=>{     // apointment JOB 4 user & PASSED
+
               res.render("basics/results", {trueA : trueA, results : results4, appo : result6});
              })
-            // res.render("basics/results", {trueA : trueA, results : result4.rows[0]});
           })
         })
       }
@@ -214,15 +250,15 @@ server.post('/results', (req, res)=>{
           // console.log('1st  ',result.rows)
           client.query(SQL2).then(result4 =>{
             let results4 = result4.rows;
-            getAppointmet(statu).then((result6)=>{
-              
+            getAppointmet(statu).then((result6)=>{  
+              // console.log(result6)
               res.render("basics/results", {trueA : trueA, results : results4, appo : result6});
              })
           })
         })
       }
     })
-     // apointment JOB 4 user & PASSED
+
 
   
     }else{ // NOT user & PASSED
@@ -234,24 +270,63 @@ server.post('/results', (req, res)=>{
         result : statu,
         date : TDa,       
       }
-      res.render("basics/results", {trueA : trueA, results : gResult});
+      getAppointmet(statu).then((result6)=>{     // apointment JOB 4 NOT user & PASSED
+        // console.log(result6)
+        res.render("basics/results", {trueA : trueA, results : gResult, appo : result6});
+      })
     }  
+
+
     }else{ // user & NOT PASSED
-    console.log('no, you dont pass!!', trueA)
-    res.render("basics/results", {trueA : trueA});
+      statu = `FAILL`;
+      let failRes = {
+        user_name : userIn.user,
+        img_url : qSP,
+        certificat_name : qSRes,
+        mark : trueA,
+        result : statu,
+        date : TDa,
+      }
+      if(userIn.user != 'guest'){
+      getAppointmet(statu).then((result6)=>{
+        res.render("basics/results", {trueA : trueA, results : failRes, appo : result6});
+       })
+      }else{
+      getAppointmet(statu).then((result6)=>{
+        res.render("basics/results", {trueA : trueA, results : failRes, appo : result6});
+       })
+      }
+
     }
     
 })
 
 function getAppointmet(mark){
   if(mark == `PASSED`){
-    let url = `https://jobs.github.com/positions.json?description=${qSRes}&location=new+york`;
+    
+    let url = `https://jobs.github.com/positions.json?page=1&search=${qSResQ}`;
 
     return  superagent.get(url).then((result) => {
-       return result.body.splice((Math.floor(Math.random()*(result.length-1))), 1);
+      let ques = [];
+      for (let i = 0; i < 3; i++) {
+        ques.push(result.body.splice((Math.floor(Math.random()*((result.body.length-1)-0+1))), 1)[0]);
+      }
+      // console.log(ques)
+      return ques;
         })
-      
+  }else{
+    let url = `https://api.coursera.org/api/courses.v1?q=search&query=${qSResQ}&fields=photoUrl,description,primaryLanguages,certificates,previewLink,categories`;
+
+    return  superagent.get(url).then((result) => {
+      let cour = [];
+      for (let i = 0; i < 3; i++) {
+        cour.push(result.body.elements.splice((Math.floor(Math.random()*((result.body.elements.length-1)-0+1))), 1)[0]);
+      }
+      // console.log(cour)
+      return cour;
+        })
   }
+
 }
 
 // constructor for the Work
@@ -262,17 +337,7 @@ function Quizze(item) {
   this.difficulty = item.difficulty
 }
 
-////////////// UpDate HireMe //////////////
-// server.put('/upDate/:userDetils.id', (req, res)=>{
-
-// })
-
-// server.get('/prof', (req, res)=>{
-//   res.render("basics/profile")
-// })
-
-
-
+//////////////////////////////////////////////////////// Sign ////////////////////////////////////////////////////////////////
 server.get('/sign', (req, res)=>{
   // console.log(userIn)
   if(userIn.user == 'guest'){
@@ -286,7 +351,7 @@ server.get('/sign', (req, res)=>{
 })
 
 
-
+// sign in ////////////////////////////////////////////////////////////////////
 server.post('/signin', (req, res)=>{
   const item = req.body;
   if(item.user_name == userIn.user && item.password == userIn.pass){
@@ -308,8 +373,10 @@ server.post('/signin', (req, res)=>{
       let SQL3 = `SELECT * FROM detials WHERE user_name='${item.user_name}';`
         client.query(SQL3).then(resultssss =>{
           userIn.userDetailsB = resultssss.rows[0];
-          res.render("basics/profile", { user : userIn, statue: true, passw : pass});
-          console.log(userIn)
+          assignCerti().then((resultz)=>{
+            res.render("basics/profile", { user : userIn, statue: true, passw : pass});
+          })
+          // console.log(userIn)
         })
         // console.log(userIn)
       }
@@ -319,7 +386,7 @@ server.post('/signin', (req, res)=>{
 })
 
 
-
+// sign up ////////////////////////////////////////////////////////////////////
 server.post('/signup', (req, res)=>{
   const item = req.body;
   let SQL = `INSERT INTO users (user_name, password, email) VALUES($1, $2, $3);`;
@@ -334,32 +401,63 @@ server.post('/signup', (req, res)=>{
         client.query(SQL2, safeValues).then(data3=>{
           userIn.userDetailsB = data3.rows[0];
           // console.log(userIn)
-          res.render("basics/profile", { user : userIn});
+          res.render("basics/profile", { user : userIn, statue: true, passw : pass});
         })
       })
     }else{
       
       userIn.userDetailsB = data2.rows[0];
       // console.log(userIn)
-      res.render("basics/profile", { user : userIn});
+      res.render("basics/profile", { user : userIn, statue: true, passw : pass});
     }
    
   })
 })
 
+
+// sign out ////////////////////////////////////////////////////////////////////
+server.get('/signOut', (req, res)=>{
+  user = '';
+  pass = '';
+  userIn = {};
+  res.render("basics/sign")
+})
+
+
+
+
+////////////////////////////////////////////////////// Profile ///////////////////////////////////////////////////////
+server.get('/profile', (req, res)=>{
+  if(userIn.user == 'guest'){
+  res.render("basics/sign")
+  }else{
+
+    res.render("basics/profile", { user : userIn, statue: true, passw : pass})
+  }
+  
+})
+
+
+function assignCerti(){
+  let SQL = `SELECT * FROM certificates WHERE user_name='${userIn.user}'`
+  return client.query(SQL).then((results)=>{
+    userIn.uCretri = results.rows;
+    // console.log(userIn)
+  })
+}
+
+
+
+////////////////////////////////////////////// update detils info ////////////////////////////////////////////////////////
 server.post('/update', (req, res)=>{
   let {gender,major,bio,education,gitHub,twitar,linkedIn} = req.body;
-  // let SQL1 = `UPDATE users SET user_name=$1,password=$2 WHERE user_name='${user}';`;
   let SQL2 = `UPDATE detials SET user_name=$1,gender=$2,education=$3,major=$4,bio=$5,github=$6,twitar=$7,linkedIn=$8 WHERE user_name='${userIn.user}';`;
   let SQL3 = `SELECT * FROM detials WHERE user_name='${userIn.user}';`;
   let SQL4 = `INSERT INTO detials (user_name, gender, education, major, bio, github, twitar, linkedIn) VALUES($1, $2, $3, $4, $5, $6, $7, $8);`;
-  // let safeValues1 = [name, password];
   let safeValues2 = [userIn.user,gender,education,major,bio,gitHub,twitar,linkedIn];
 
 
-  // client.query(SQL1, safeValues1).then(() => {
     client.query(SQL3).then((resultsss) => {
-      // console.log(resultsss.rows)
       if(resultsss.rows.length == 0){
         client.query(SQL4, safeValues2).then(() => {
           client.query(SQL3).then((results) => {
@@ -378,11 +476,27 @@ server.post('/update', (req, res)=>{
         }) 
       }
     })
-   
-  // })
-  // console.log(userIn)
 })
 
+
+
+
+
+////////////////////////////////////////////////////  hireMe post /////////////////////////////////////////////////////////
+server.get('/hireMe', (req, res)=>{
+  let SQL = `SELECT * FROM hireme;`
+  client.query(SQL).then((result) => {
+    // console.log(result.rows)
+    let employers = result.rows;
+    assignCerti().then((resultz)=>{
+      res.render("basics/hireme", { emplo : employers})
+    })
+  })
+})
+
+
+
+// update hireMe post /////////////////////////////////////////////////////////// 
 server.post('/updateHireMe', (req, res)=>{
   let {user_name,education,major,email,twitar,github,linkedIn,descr} = req.body;
   let SQL1 = `SELECT * FROM hireme WHERE user_name='${userIn.user}';`
@@ -402,54 +516,17 @@ server.post('/updateHireMe', (req, res)=>{
   })
 })
 
-server.get('/signOut', (req, res)=>{
-  user = '';
-  pass = '';
-  userIn = {};
-  res.render("basics/sign")
-})
-
-server.get('/hireMe', (req, res)=>{
-  let SQL = `SELECT * FROM hireme;`
-  client.query(SQL).then((result) => {
-    // console.log(result.rows)
-    res.render("basics/hireme", { emplo : result.rows})
-  })
-})
-
-server.get('/profile', (req, res)=>{
-  if(userIn.user == 'guest'){
-  res.render("basics/sign")
-  }else{
-    let SQL = `SELECT * FROM certificates WHERE user_name='${userIn.user}'`
-    client.query(SQL).then((results)=>{
-      userIn.uCretri = results.rows;
-      res.render("basics/profile", { user : userIn, statue: true, passw : pass})
-      console.log(userIn)
-    })
-  }
-  
-})
-
-////////////// Is User //////////////
-
-// server.get('/isuser', (req, res)=>{
-//   if(user != guest){
-//     user_obj.isuser = true;
-//     user_obj.user_name = user;
-//     user_obj.user_name = user;
-//     
-//   }
-// })
 
 
-// About Us
+
+
+////////////////////////////////////////////////// About Us /////////////////////////////////////////////////////////////
 server.get('/team',(req,res)=>{
 res.render('basics/about-us');
-
 });
 
 
+//////////////////////////////////////////////// defult Routs.. /////////////////////////////////////////////////////////
 //  this is for all faild routes that the user might insert
 server.get("*", (req, res) => {
   res.status(404).send("/error.ejs");
