@@ -15,8 +15,8 @@
                      <div class="formBx">
                          <form action="/signin" id="SIForm" method="post">
                              <h2>Sign in</h2>
-                             <input type="text" name="user_name" placeholder="User Name">
-                             <input type="password" name="password" placeholder="Password">
+                             <input type="text" name="user_name" placeholder="User Name" required>
+                             <input type="password" name="password" placeholder="Password" required>
                              <input type="submit" value="Login">
                              <p class="signup">dont have an account?<a href="#" onclick="toggleForm()">Sign Up</a></p>
                          </form>
@@ -27,10 +27,10 @@
                     <div class="formBx">
                         <form action="/signup" id="SUForm" method="post">
                             <h2>Create an Account</h2>
-                            <input type="text" name="user_name" placeholder="User Name">
-                            <input type="email" name="email" placeholder="Email">
-                            <input type="password" name="password" placeholder="Password">
-                            <input type="password" placeholder="Confairm Password">
+                            <input type="text" name="user_name" placeholder="User Name" required>
+                            <input type="email" name="email" placeholder="Email" required>
+                            <input type="password" name="password" placeholder="Password" required>
+                            <input type="password" placeholder="Confairm Password" required>
                             <input type="submit" value="Sign Up">
                             <p class="signup">Already have an account?<a href="#" onclick="toggleForm()">Sign In</a></p>
                         </form>
