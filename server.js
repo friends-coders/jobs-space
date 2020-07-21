@@ -47,8 +47,8 @@ server.get("/", (req, res) => {
 let offers = [];
 server.get("/work", (req, res) => {
   offers = [];
-  let city = req.query.city;
-  let url = `https://jobs.github.com/positions.json?description=${city}&location=new+york`;
+  let field = req.query.field;
+  let url = `https://jobs.github.com/positions.json?page=1&search=${field}`;
 
   if(city){
     superagent.get(url).then((result) => {
@@ -126,6 +126,7 @@ server.post('/data', function(req, res){
 /////// Quizzes API //////
 let questions = [];
 let qSRes ='';
+let qSResQ;
 let qSP;
 
 server.get("/quizzes", (req, res)=>{
@@ -148,6 +149,7 @@ server.get("/quizzes", (req, res)=>{
       }
       // console.log(questions)
       qSRes = quizzeTag;
+      qSResQ = quizzeTag;
       res.render("basics/quizzat", {quizzeInfo : questions});
     });
     }else{
@@ -199,8 +201,8 @@ server.post('/results', (req, res)=>{
           client.query(SQL2).then(result4 =>{
             // console.log(result4.rows)
             let results4 = result4.rows[0];
-            getAppointmet(statu).then((result6)=>{
-              
+            getAppointmet(statu).then((result6)=>{     // apointment JOB 4 user & PASSED
+
               res.render("basics/results", {trueA : trueA, results : results4, appo : result6});
              })
             // res.render("basics/results", {trueA : trueA, results : result4.rows[0]});
@@ -214,15 +216,15 @@ server.post('/results', (req, res)=>{
           // console.log('1st  ',result.rows)
           client.query(SQL2).then(result4 =>{
             let results4 = result4.rows;
-            getAppointmet(statu).then((result6)=>{
-              
+            getAppointmet(statu).then((result6)=>{  
+              // console.log(result6)
               res.render("basics/results", {trueA : trueA, results : results4, appo : result6});
              })
           })
         })
       }
     })
-     // apointment JOB 4 user & PASSED
+
 
   
     }else{ // NOT user & PASSED
@@ -234,24 +236,63 @@ server.post('/results', (req, res)=>{
         result : statu,
         date : TDa,       
       }
-      res.render("basics/results", {trueA : trueA, results : gResult});
+      getAppointmet(statu).then((result6)=>{     // apointment JOB 4 NOT user & PASSED
+        // console.log(result6)
+        res.render("basics/results", {trueA : trueA, results : gResult, appo : result6});
+      })
     }  
+
+
     }else{ // user & NOT PASSED
-    console.log('no, you dont pass!!', trueA)
-    res.render("basics/results", {trueA : trueA});
+      statu = `FAILL`;
+      let failRes = {
+        user_name : userIn.user,
+        img_url : qSP,
+        certificat_name : qSRes,
+        mark : trueA,
+        result : statu,
+        date : TDa,
+      }
+      if(userIn.user != 'guest'){
+      getAppointmet(statu).then((result6)=>{
+        res.render("basics/results", {trueA : trueA, results : failRes, appo : result6});
+       })
+      }else{
+      getAppointmet(statu).then((result6)=>{
+        res.render("basics/results", {trueA : trueA, results : failRes, appo : result6});
+       })
+      }
+
     }
     
 })
 
 function getAppointmet(mark){
   if(mark == `PASSED`){
-    let url = `https://jobs.github.com/positions.json?description=${qSRes}&location=new+york`;
+    
+    let url = `https://jobs.github.com/positions.json?page=1&search=${qSResQ}`;
 
     return  superagent.get(url).then((result) => {
-       return result.body.splice((Math.floor(Math.random()*(result.length-1))), 1);
+      let ques = [];
+      for (let i = 0; i < 3; i++) {
+        ques.push(result.body.splice((Math.floor(Math.random()*((result.body.length-1)-0+1))), 1)[0]);
+      }
+      // console.log(ques)
+      return ques;
         })
-      
+  }else{
+    let url = `https://api.coursera.org/api/courses.v1?q=search&query=${qSResQ}&fields=photoUrl,description,primaryLanguages,certificates,previewLink,categories`;
+
+    return  superagent.get(url).then((result) => {
+      let cour = [];
+      for (let i = 0; i < 3; i++) {
+        cour.push(result.body.elements.splice((Math.floor(Math.random()*((result.body.elements.length-1)-0+1))), 1)[0]);
+      }
+      // console.log(cour)
+      return cour;
+        })
   }
+
 }
 
 // constructor for the Work
@@ -308,8 +349,10 @@ server.post('/signin', (req, res)=>{
       let SQL3 = `SELECT * FROM detials WHERE user_name='${item.user_name}';`
         client.query(SQL3).then(resultssss =>{
           userIn.userDetailsB = resultssss.rows[0];
-          res.render("basics/profile", { user : userIn, statue: true, passw : pass});
-          console.log(userIn)
+          assignCerti().then((resultz)=>{
+            res.render("basics/profile", { user : userIn, statue: true, passw : pass});
+          })
+          // console.log(userIn)
         })
         // console.log(userIn)
       }
@@ -334,14 +377,14 @@ server.post('/signup', (req, res)=>{
         client.query(SQL2, safeValues).then(data3=>{
           userIn.userDetailsB = data3.rows[0];
           // console.log(userIn)
-          res.render("basics/profile", { user : userIn});
+          res.render("basics/profile", { user : userIn, statue: true, passw : pass});
         })
       })
     }else{
       
       userIn.userDetailsB = data2.rows[0];
       // console.log(userIn)
-      res.render("basics/profile", { user : userIn});
+      res.render("basics/profile", { user : userIn, statue: true, passw : pass});
     }
    
   })
@@ -413,7 +456,10 @@ server.get('/hireMe', (req, res)=>{
   let SQL = `SELECT * FROM hireme;`
   client.query(SQL).then((result) => {
     // console.log(result.rows)
-    res.render("basics/hireme", { emplo : result.rows})
+    let employers = result.rows;
+    assignCerti().then((resultz)=>{
+      res.render("basics/hireme", { emplo : employers})
+    })
   })
 })
 
@@ -421,15 +467,19 @@ server.get('/profile', (req, res)=>{
   if(userIn.user == 'guest'){
   res.render("basics/sign")
   }else{
-    let SQL = `SELECT * FROM certificates WHERE user_name='${userIn.user}'`
-    client.query(SQL).then((results)=>{
-      userIn.uCretri = results.rows;
-      res.render("basics/profile", { user : userIn, statue: true, passw : pass})
-      console.log(userIn)
-    })
+
+    res.render("basics/profile", { user : userIn, statue: true, passw : pass})
   }
   
 })
+
+function assignCerti(){
+  let SQL = `SELECT * FROM certificates WHERE user_name='${userIn.user}'`
+  return client.query(SQL).then((results)=>{
+    userIn.uCretri = results.rows;
+    // console.log(userIn)
+  })
+}
 
 ////////////// Is User //////////////
 
