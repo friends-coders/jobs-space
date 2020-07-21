@@ -24,22 +24,21 @@ $(".hover").mouseleave(
 
 let user;
 let pass;
+let spass;
 
 $( document ).ready(function() {
-  function get(){
-    let uu= localStorage.getItem('user');
-    let pp= localStorage.getItem('pass');
-    if(uu && pp){
-      user = JSON.parse(uu);
-      pass = JSON.parse(pp);
-    }else{
-      user = 'guest';
-      pass = 'guest'
-    }
-  }
-  
-  get();
 
+  $('#SIO').on('click', function(event){
+    signOut();
+  })
+  
+  function signOut(){
+    user = 'guest';
+    pass = 'guest';
+    spass = 'guest';
+
+    set();
+  }
   $('#SUForm').on('submit', function(event){
     // event.preventDefault();
     user = event.target[0].value;
@@ -48,18 +47,53 @@ $( document ).ready(function() {
     set();
   })
 
+
+  
+
+
+  function get(){
+    let uu= localStorage.getItem('user');
+    let pp= localStorage.getItem('pass');
+    let ss= localStorage.getItem('spass');
+    if(uu && pp){
+      user = JSON.parse(uu);
+      pass = JSON.parse(pp);
+      spass = JSON.parse(ss);
+    }else{
+      user = 'guest';
+      pass = 'guest';
+      spass = 'guest';
+    }
+  }
+
+  get();
+  
+  $('#SIForm').on('submit', function(event){
+    // event.preventDefault();
+    // console.log(event)
+    spass = event.target[1].value;
+    set();
+  })
+  
+  if($('#ST').text() == "true"){
+    user = $('#UN').text();
+    pass = spass;
+    set();
+  }
+  
+
+
   function set(){
     let uu = JSON.stringify(user);
     let pp = JSON.stringify(pass);
+    let ss = JSON.stringify(spass);
     localStorage.setItem('user', uu);
     localStorage.setItem('pass', pp);
+    localStorage.setItem('spass', ss);
   }
 
   // console.log($('#ST').text() )
-  if($('#ST').text() == "true"){
-    user = $('#UN').text();
-    set();
-  }
+
 
   var xhr = new XMLHttpRequest();
   var data = {
@@ -73,10 +107,6 @@ $( document ).ready(function() {
   xhr.setRequestHeader('Content-Type', 'application/json');
   xhr.send(JSON.stringify(data));
 
-function signOut(){
-  user = 'guest';
-  pass = 'guest'; 
-}
 
   
 });

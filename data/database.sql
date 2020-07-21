@@ -25,7 +25,7 @@ CREATE TABLE IF NOT EXISTS detials
     linkedIn VARCHAR(255)
 );
 
-INSERT INTO detials (user_name, gender, img_url, education, major, bio, github, twitar, linkedIn) VALUES('ali', 'male', 'images/test-img.jpg', 'enginer', 'doctor', 'small noob', 'ali.github.com', 'ali.twiter.com', 'ali.linkedin.com');
+INSERT INTO detials (user_name, email, gender, img_url, education, major, bio, github, twitar, linkedIn) VALUES('ali', 'ali@ali.com', 'male', 'images/test-img.jpg', 'enginer', 'doctor', 'small noob', 'ali.github.com', 'ali.twiter.com', 'ali.linkedin.com');
 
 DROP TABLE IF EXISTS hireme;
 CREATE TABLE IF NOT EXISTS hireme
@@ -42,3 +42,16 @@ CREATE TABLE IF NOT EXISTS hireme
 );
 
 INSERT INTO hireme (user_name, img_url, education, major, email, github, twitar, linkedIn, descr) VALUES('ali', 'images/test-img.jpg', 'enginer', 'doctor', 'ali@ali.com', 'ali.github.com', 'ali.twiter.com', 'ali.linkedin.com', 'noooob in gaming');
+
+DROP TABLE IF EXISTS certificates;
+CREATE TABLE IF NOT EXISTS certificates
+(
+    user_name VARCHAR(255),
+    img_url VARCHAR(255),
+    certificat_name VARCHAR(255),
+    mark VARCHAR(255),
+    result VARCHAR(255),
+    date VARCHAR(255)
+);
+
+INSERT INTO certificates (user_name, img_url, certificat_name, mark, result, date) VALUES('ali', 'images/javas', 'JS Coding', '4/5', 'PASSED', '21/7/2020');

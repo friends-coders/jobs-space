@@ -19,16 +19,15 @@
         <div> <!-- main-details: name, email, password -->
             <h2>Main Details:</h2>
             <% if(user.userDetailsB){ %>
-                <h3><%= user.userDetailsB.user_name %></h3>
+                <h3 id="UN"><%=user.userDetailsB.user_name%></h3>
                 <h4> <%= user.userDetailsB.email %> </h4>
-          <%  }else{ %>
-                <h3 id="UN"> <%= user.userDetailsA.user_name %> </h3>
+          <%  }else if(user.userDetailsA){ %>
+                <h3 id="UN"><%=user.userDetailsA.user_name%></h3>
                 <h4> <%= user.userDetailsA.email %> </h4>
-                
-                    <i id="ST" style="display: none;"> <%= statue %> </i>
-              
-        <%  } %>
-
+        <%  } 
+        if(statue){ %>
+            <i id="ST" style="display: none;"><%=statue%></i>
+    <%  } %>
  
         </div>
         <div> <!-- more-details: gender, spelize, education, bio  -->
@@ -41,13 +40,19 @@
           <%  } %>
         </div>
         <div> <!-- certifcates -->
-            <!-- < userDetils.cretrifcates.forEach(item=>{ >
-                <div>
-                 <h5> <= item.name> </h5>   quiz name
-                 <h3> <= item.mark> </h3>  quiz mark 
-                 <p> <= item.desc> </p>  mark describtion 
-                </div>
-            }) -->    
+            <h1>My Certificates</h1>
+            <% if(user.uCretri){
+                user.uCretri.forEach(item=>{ %>
+                   <div>
+                       <img src="<%= item.img_url %>" alt="">
+                    <h5>Master Of <%= item.certificat_name %> </h5>
+                    <h3> <%= item.mark %> </h3>
+                    <h2> <%= item.result %> </h2>
+                    <p><%= item.date %></p>
+                   </div>
+           <%  })     
+                
+            } %>
         </div>
 
         <div> <!-- Contact Me -->
@@ -62,14 +67,14 @@
        let y;
         if(user.userDetailsB){
             x =  user.userDetailsB;
-            y = user;
+            y = passw;
         }else{
             x =  user.userDetailsA;
             y = passw;
         }
             if(user.user == x.user_name && y.pass == x.password){ %>
             <button>Update My Info</button>
-            <%  } %>
+            
 
                 <form action="/update" method="post">
 
@@ -102,7 +107,7 @@
         
                 </form>
             <button>Delete My Profile</button>
-            
+        <%  } %> 
     </main>
     <script src="/javascript/app.js"></script>
 </body>
