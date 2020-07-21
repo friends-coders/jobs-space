@@ -5,17 +5,167 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <%- include('../layout/head.ejs') %>
     <title>Quizzat</title>
 </head>
-
 <body>
     <header>
-
+        <%- include('../layout/header.ejs') %>
     </header>
     <main>
-        <div>
-            <img src="images/test-img.jpg" style="border-radius: 50%;">
-        </div>
+<!-- START -->
+<div class="container">
+    <form class="well form-horizontal" action="/update" method="post" id="contact_form">
+        <!-- Form Name -->
+        <fieldset>
+            <div id="profileImg-details">
+                <div>
+                    <img src="images/test-img.jpg" id="profilePic">
+                </div>
+<!-- <legend>Contact Us Today!</legend> -->
+
+<!-- Text input-->
+<div id="profileDBdetails" > <!-- main-details: name, email, password -->
+    <h2>Main Details:</h2>
+    <% if(user.userDetailsB){ %>
+        <h3><%= user.userDetailsB.user_name %></h3>
+        <h4> <%= user.userDetailsB.email %> </h4>
+  <%  }else{ %>
+        <h3 id="UN"> <%= user.userDetailsA.user_name %> </h3>
+        <h4> <%= user.userDetailsA.email %> </h4>
+        
+            <i id="ST" style="display: none;"> <%= statue %> </i>
+      
+<%  } %>
+</div>
+<div> <!-- more-details: gender, spelize, education, bio  -->
+  <h2>More Details:</h2>
+  <% if(user.userDetailsA){ %>
+      <h4> <%= user.userDetailsA.gender %> </h4> 
+          <h4> <%= user.userDetailsA.education %> </h4>
+          <h4> <%= user.userDetailsA.major %> </h4>
+          <p> <%= user.userDetailsA.bio %> </p>
+<%  } %>
+</div>
+
+<!-- <form action="/update" method="post">
+
+
+    <button type="submit">Save</button>
+
+    </form>  -->
+
+</div>
+<div class="form-group">
+  <label class="col-md-4 control-label">Gender</label>  
+  <div class="col-md-4 inputGroupContainer">
+  <div class="input-group">
+  <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+  <input type="text" name="gender" placeholder="Gender" class="form-control">
+    </div>
+  </div>
+</div>
+
+<!-- Text input-->
+
+<div class="form-group">
+  <label class="col-md-4 control-label" >Major</label> 
+    <div class="col-md-4 inputGroupContainer">
+    <div class="input-group">
+  <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+  <input type="text" name="major" placeholder="Major" class="form-control" >
+    </div>
+  </div>
+</div>
+
+
+<!-- Text input-->
+       <div class="form-group">
+  <label class="col-md-4 control-label">Education</label>  
+    <div class="col-md-4 inputGroupContainer">
+    <div class="input-group">
+        <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+        <input type="text" name="education" placeholder="Education" class="form-control" >
+    </div>
+  </div>
+</div>
+
+
+<!-- Text input-->
+       
+<div class="form-group">
+  <label class="col-md-4 control-label">Twitter</label>  
+    <div class="col-md-4 inputGroupContainer">
+    <div class="input-group">
+        <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
+        <input type="text" name="twitar"  placeholder="Twitter link" class="form-control">
+    </div>
+  </div>
+</div>
+
+<!-- Text input-->
+      
+<div class="form-group">
+  <label class="col-md-4 control-label">GitHub</label>  
+    <div class="col-md-4 inputGroupContainer">
+    <div class="input-group">
+        <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+        <input type="text" name="gitHub" placeholder="GitHub link" class="form-control">
+    </div>
+  </div>
+</div>
+
+<!-- Text input-->
+ 
+<div class="form-group">
+  <label class="col-md-4 control-label">LinkedIn</label>  
+    <div class="col-md-4 inputGroupContainer">
+    <div class="input-group">
+        <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+        <input type="text" name="linkedIn" placeholder="LinkedIn link" class="form-control">
+    </div>
+  </div>
+</div>
+<!-- Bio -->
+<div class="form-group">
+    <label class="col-md-4 control-label">Bio</label>
+      <div class="col-md-4 inputGroupContainer">
+      <div class="input-group">
+          <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+              <textarea class="form-control" name="bio placeholder="Bio"></textarea>
+    </div>
+    </div>
+  </div>
+ 
+
+<!-- Button -->
+<div class="form-group">
+  <label class="col-md-4 control-label"></label>
+  <div class="col-md-4">
+    <button type="submit" class="btn btn-warning" >Save Changes <span class="glyphicon glyphicon-send"></span></button>
+  </div>
+</div>
+
+</fieldset>
+</form>
+
+
+
+
+
+
+
+
+</div>
+    <!-- </div> -->
+    <!-- /.container -->
+
+<!-- END -->
+
+
+
+        
+
         <div> <!-- main-details: name, email, password -->
             <h2>Main Details:</h2>
             <% if(user.userDetailsB){ %>
@@ -71,19 +221,7 @@
             <button>Update My Info</button>
             <%  } %>
 
-                <form action="/update" method="post">
-
-                <label for="">Gender:<input type="text" name="gender"></label>
-                <label for="">Major:<input type="text" name="major"></label>
-                <label for="">Bio:<input type="text" name="bio"></label>
-                <label for="">Education:<input type="text" name="education"></label>
-                <label for="">Twitar:<input type="text" name="twitar"></label>
-                <label for="">GitHub:<input type="text" name="gitHub"></label>
-                <label for="">LinkedIn:<input type="text" name="linkedIn"></label>
-
-                <button type="submit">Save</button>
-        
-                </form> 
+                /*Form Done Above*/
             
             <button>Update My HireMe Post</button>
 
