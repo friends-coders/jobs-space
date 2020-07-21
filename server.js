@@ -336,7 +336,10 @@ res.render('basics/about-us');
 
 });
 
-
+//profile
+server.get('/profile',(req,res)=>{
+res.render('basics/profile');
+});
 //  this is for all faild routes that the user might insert
 server.get("*", (req, res) => {
   res.status(404).send("/error.ejs");
