@@ -9,12 +9,11 @@ font-family: 'Baloo Thambi 2', cursive;
   box-sizing: border-box;
 }
 
-#error{
-    background-image: url(/images/404.png);
-    background-repeat: no-repeat;
-    background-size: cover;
+#error {
+  background-image: url(/images/404.png);
+  background-repeat: no-repeat;
+  background-size: cover;
 }
-    
 
 #navbar {
   height: 60px;
@@ -49,7 +48,7 @@ font-family: 'Baloo Thambi 2', cursive;
 }
 
 #navbar ul {
-  margin-left: 16%;
+  margin-left: 20%;
 }
 
 #navbar ul li {
@@ -225,7 +224,7 @@ a:hover {
 }
 
 /*start about us page */
-/* 
+
 .bigcontainer {
   width: 85%;
   display: flex;
@@ -285,7 +284,7 @@ h1#aboutUsHeading {
 
 .container2:hover .Appearing {
   display: block;
-} */
+}
 
 /* end about us page */
 
@@ -324,3 +323,139 @@ h1#aboutUsHeading {
 }
 
 /* courses card end */
+
+/* hire me page */
+
+.snip1540 {
+  box-shadow: none !important;
+  color: #141414;
+  display: inline-block;
+  font-family: "Baloo Thambi 2", cursive;
+  font-size: 14px;
+  line-height: 1.4em;
+  margin: 10px;
+  max-width: 525px;
+  min-width: 230px;
+  position: relative;
+  text-align: left;
+  width: 100%;
+}
+
+.snip1540 * {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.snip1540 .profile-image img {
+  border-radius: 5px;
+  max-width: 100%;
+  height: 80px;
+  vertical-align: top;
+  float: left;
+}
+
+.snip1540 figcaption {
+  border-radius: 5px;
+  color: #fff;
+  display: inline-block;
+  margin-top: 15px;
+  padding: 25px;
+  position: relative;
+  width: 100%;
+}
+
+.snip1540 figcaption:after {
+  border-color: transparent transparent #333333 transparent;
+  border-style: solid;
+  border-width: 0 10px 10px 10px;
+  bottom: 100%;
+  content: "";
+  height: 0;
+  left: 32px;
+  position: absolute;
+  width: 0;
+}
+
+.snip1540 h3,
+.snip1540 h4,
+.snip1540 p {
+  margin: 0 0 5px;
+}
+
+.snip1540 p {
+  font-size: 0.9em;
+  letter-spacing: 1px;
+  opacity: 0.9;
+}
+
+.snip1540 .icons {
+  padding: 20px 90px;
+}
+
+.snip1540 i {
+  color: #000000;
+  display: inline-block;
+  font-size: 18px;
+  font-weight: normal;
+  opacity: 0.75;
+  padding: 10px 2px;
+}
+
+.snip1540 i:hover {
+  opacity: 1;
+  -webkit-transition: all 0.35s ease;
+  transition: all 0.35s ease;
+}
+
+.flex-hire {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.profile-left {
+  margin-left: -60%;
+}
+.profile-left figcaption {
+  background-color: #5c6ac4;
+}
+.profile-right {
+  margin-right: -60%;
+}
+.profile-right figcaption {
+  background-color: #333333;
+}
+
+
+.profile-left figcaption span {
+  color: #000;
+  font-size: 22px;
+}
+.profile-left figcaption h1 {
+  color: white;
+}
+.profile-left figcaption h3 {
+  color: white;
+}
+.profile-left figcaption h4 {
+  color: white;
+}
+
+.profile-right figcaption span {
+  color: white;
+  font-size: 22px;
+}
+.profile-right figcaption h1 {
+  color: #5c6ac4;
+}
+.profile-right figcaption h3 {
+  color: #5c6ac4;
+}
+.profile-right figcaption h4 {
+  color: #5c6ac4;
+}
+.profile-right figcaption i {
+  color: white;
+}
