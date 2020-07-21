@@ -459,3 +459,21 @@ h1#aboutUsHeading {
 .profile-right figcaption i {
   color: white;
 }
+
+/* prfile */
+#success_message{ display: none;}
+
+#profileImg-details{
+
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+#profileDBdetails{
+  text-align: start;
+  margin: 5% 30% 0 0 ;
+}
+#profilePic{
+  border-radius: 5%;
+}
