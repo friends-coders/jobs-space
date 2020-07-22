@@ -526,6 +526,48 @@ h1#aboutUsHeading {
 /* end style quizzat page */
 
 
+/* start result page style*/
+
+.resultCart {
+    margin-top: 10%;
+    margin-bottom: 10%;
+    text-align: center;
+    background-color: #939ddf;
+    color: white;
+    height: 10%;
+    padding: 1%;
+}
+
+.blinkGreen {
+    color: green;
+    animation: blink 1s linear infinite;
+}
+
+.blinkRed {
+    color: red;
+    animation: blink 2s linear infinite;
+}
+
+.h22 {
+    color: white;
+}
+
+@keyframes blink {
+    50% {
+        opacity: 0;
+    }
+}
+
+.pInCart {
+    font-size: 20px;
+    line-height: 28px;
+    color: white;
+}
+
+
+/* end result page style */
+
+
 /* Start Profile Page */
 
 ::placeholder {
