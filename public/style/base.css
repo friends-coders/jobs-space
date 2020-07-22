@@ -1,14 +1,11 @@
 @import url("https://fonts.googleapis.com/css2?family=Baloo+Thambi+2:wght@500&display=swap");
-
 /* 
 font-family: 'Baloo Thambi 2', cursive;
  */
-
 * {
     font-family: "Baloo Thambi 2", cursive;
     box-sizing: border-box;
 }
-
 
 #navbar {
     height: 60px;
@@ -24,12 +21,12 @@ font-family: 'Baloo Thambi 2', cursive;
 }
 
 #navbar h1 {
+    font-family: 'Cinzel', serif;
     float: left;
     margin-left: 24px;
     line-height: 60px;
     color: #5c6ac4;
-    font-family: "Baloo Thambi 2";
-    font-size: 24px;
+    font-size: 26px;
 }
 
 #navbar h1 a:hover {
@@ -37,18 +34,13 @@ font-family: 'Baloo Thambi 2', cursive;
     color: #828cc9;
 }
 
-#logo {
-    float: left;
-    margin: 12px;
-}
-
 #navbar ul {
     margin-left: 20%;
 }
 
 #navbar ul li {
-    margin-top: 20px;
-    padding-left: 80px;
+    margin-top: 1.4%;
+    padding-left: 5.5%;
     list-style: none;
     text-align: center;
     float: left;
@@ -60,12 +52,12 @@ font-family: 'Baloo Thambi 2', cursive;
 }
 
 #navbar button {
-    padding: 4px 20px;
+    padding: 0.6% 2%;
     background: none;
     color: white;
     border: 1px solid white;
     border-radius: 4px;
-    margin-left: 40px;
+    margin-left: 2%;
     margin-top: 12px;
 }
 
@@ -78,9 +70,9 @@ font-family: 'Baloo Thambi 2', cursive;
 /* work.ejs page */
 
 #input-Work {
-    margin: 6% 0% 16% 10%;
+    margin: 6% 0% 2% 18%;
     /* margin-left: 16%; */
-    width: 57%;
+    width: 48%;
     padding: 8px;
 }
 
@@ -211,6 +203,21 @@ a:hover {
     border: none;
     text-align: justify;
     outline: none;
+    text-align: center;
+    font-size: 18px;
+}
+
+.collapsible2 {
+    background-color: #c2c2c5;
+    color: #000;
+    cursor: pointer;
+    padding: 10px;
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid white;
+    text-align: justify;
+    outline: none;
+    text-align: center;
 }
 
 .content {
@@ -229,7 +236,7 @@ a:hover {
 
 .bigcontainer {
     width: 85%;
-    height: 45vh;
+    /* height: 45vh; */
     display: flex;
     margin: 50px auto;
     background-color: #201f1fd2;
@@ -341,13 +348,13 @@ h1#aboutUsHeading {
 .snip1540 {
     box-shadow: none !important;
     color: #141414;
-    display: inline-block;
+    /* display: inline-block; */
     font-family: "Baloo Thambi 2", cursive;
     font-size: 14px;
     line-height: 1.4em;
     margin: 10px;
-    max-width: 525px;
-    min-width: 230px;
+    max-width: 48%;
+    min-width: 32%;
     position: relative;
     text-align: left;
     width: 100%;
@@ -424,24 +431,14 @@ h1#aboutUsHeading {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: space-evenly;
 }
 
-.profile-left {
-    margin-left: -60%;
-}
 
 .profile-left figcaption {
     background-color: #5c6ac4;
 }
 
-.profile-right {
-    margin-right: -60%;
-}
-
-.profile-right figcaption {
-    background-color: #333333;
-}
 
 .profile-left figcaption span {
     color: #000;
@@ -457,27 +454,6 @@ h1#aboutUsHeading {
 }
 
 .profile-left figcaption h4 {
-    color: white;
-}
-
-.profile-right figcaption span {
-    color: white;
-    font-size: 22px;
-}
-
-.profile-right figcaption h1 {
-    color: #5c6ac4;
-}
-
-.profile-right figcaption h3 {
-    color: #5c6ac4;
-}
-
-.profile-right figcaption h4 {
-    color: #5c6ac4;
-}
-
-.profile-right figcaption i {
     color: white;
 }
 
@@ -506,6 +482,7 @@ h1#aboutUsHeading {
 .answerArea * {
     margin: 7px;
     cursor: pointer;
+    font-size: 20px;
 }
 
 .submitButton {
@@ -529,11 +506,6 @@ h1#aboutUsHeading {
     cursor: pointer;
 }
 
-.searchInput {
-    width: 57%;
-    padding: 8px;
-    margin: 6% 0% 16% 10%;
-}
 
 .submit-quiz {
     margin: 50px 35%;
@@ -546,8 +518,8 @@ h1#aboutUsHeading {
 }
 
 .h2 {
-    margin-top: 50px;
-    margin-left: 22%;
+    margin-top: 120px;
+    margin-left: 32%;
     color: #201f1fd2;
 }
 
