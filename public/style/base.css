@@ -9,7 +9,6 @@ font-family: 'Baloo Thambi 2', cursive;
     box-sizing: border-box;
 }
 
-
 #navbar {
     height: 60px;
     background: #111111;
@@ -553,3 +552,75 @@ h1#aboutUsHeading {
 
 
 /* end style quizzat page */
+
+
+/* Start Profile Page */
+
+#profileHead {
+    margin-top: 10%;
+    display: flex;
+    flex-direction: row;
+    background-color: khaki;
+}
+
+#details-Certificat {
+    display: flex;
+    flex-direction: column;
+    background-color: lightcoral;
+    width: 55%;
+}
+
+#details-Certificat>div {
+    text-align: center;
+}
+
+#besid-prof-pic {
+    display: flex;
+    flex-direction: column;
+}
+
+#forms-flex-side {
+    display: flex;
+    flex-direction: column;
+    background-color: lightseagreen;
+    width: 45%;
+}
+
+#profile-body-flex {
+    display: flex;
+    flex-direction: row;
+}
+
+.profile-forms {
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+}
+
+.profile-forms input {
+    width: 90%;
+    margin-left: 5%;
+    height: 8%;
+    border-radius: 2%;
+}
+
+.profile-forms textarea {
+    width: 90%;
+    margin-left: 5%;
+    /* height: 8%; */
+    border-radius: 2%;
+}
+
+.profile-forms label {
+    margin-left: 5%;
+    font-size: 25px;
+}
+
+.profile-btns {
+    margin-left: 15%;
+    width: 60%;
+    font-weight: 700;
+}
+
+
+/* End Profile Page */
