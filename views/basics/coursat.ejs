@@ -4,15 +4,18 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Coursat</title>
+    <title>Courses</title>
     <%- include('../layout/head.ejs') %>
 </head>
-
 <body>
     <header>
         <%- include('../layout/header.ejs') %>
     </header>
     <main>
+        <form action="/courses" method="get">
+            <input type="text" name="couresName" id="input-Work" />
+            <button id="work-button">Search</button>
+        </form>
         <div class="tb-content elementor-page">
             <div class="container">
                 <div class="row">
@@ -115,10 +118,6 @@
                                     </section>
                                     <!-- main in this page -->
 
-                                    <form action="/courses" method="get">
-                                        <input type="text" name="couresName" id="input-Work" />
-                                        <button id="work-button">Search</button>
-                                    </form>
                                     <div id="flex">
                                         <% if(courseInfo.length != 0){ courseInfo.forEach(item =>{ %>
                                         <div id="couresCard">
