@@ -9,11 +9,6 @@ font-family: 'Baloo Thambi 2', cursive;
     box-sizing: border-box;
 }
 
-#error {
-    background-image: url(/images/404.png);
-    background-repeat: no-repeat;
-    background-size: cover;
-}
 
 #navbar {
     height: 60px;
@@ -234,6 +229,7 @@ a:hover {
 
 .bigcontainer {
     width: 85%;
+    height: 45vh;
     display: flex;
     margin: 50px auto;
     background-color: #201f1fd2;
@@ -269,7 +265,7 @@ a:hover {
 .personalimg {
     border-radius: 15px;
     height: 350px;
-    width: 300px;
+    /* width: 100%; */
     border: 2px solid #5c6ac4;
 }
 

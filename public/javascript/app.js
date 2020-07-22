@@ -1,5 +1,7 @@
 'use strict'
 // work.ejs  
+
+
 var coll = document.getElementsByClassName("collapsible");
 var i;
 
@@ -21,12 +23,12 @@ $(".hover").mouseleave(
     $(this).removeClass("hover");
   }
 );
-
+$( document ).ready(function() {
 let user;
 let pass;
 let spass;
 
-$( document ).ready(function() {
+
 
   $('#SIO').on('click', function(event){
     signOut();
@@ -39,13 +41,7 @@ $( document ).ready(function() {
 
     set();
   }
-  $('#SUForm').on('submit', function(event){
-    // event.preventDefault();
-    user = event.target[0].value;
-    pass = event.target[2].value;
-    // console.log(event.target[2].value)
-    set();
-  })
+
 
 
   
@@ -80,9 +76,25 @@ $( document ).ready(function() {
     pass = spass;
     set();
   }
+
+  if($('#te').text() == 'Congraidlation !!'){
+    window.location.reload();
+  }
+  $('#SUForm').on('submit', function(event){
+    // event.preventDefault();
+    user = event.target[0].value;
+    pass = event.target[2].value;
+    spass = event.target[2].value;
+    // console.log(event.target[2].value)
+    set();
+  })
+
+  if(user != 'guest'){
+    $('#SIO').html('<a href="/signOut" onclick="signOut()">Sign out</a>')
+  }else{
+    $('#SIO').html('<a href="/sign">Sign in</a>')
+  }
   
-
-
   function set(){
     let uu = JSON.stringify(user);
     let pp = JSON.stringify(pass);
