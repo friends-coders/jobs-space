@@ -16,11 +16,12 @@
 
     </header>
     <main>
-        <%- include('../layout/main-load.ejs') %>
+        <div class="tb-content elementor-page">
+
 
             <section id="profileHead">
                 <div>
-                    <img src="images/test-img.jpg" style="border-radius: 50%;">
+                    <img src="images/person.svg" style="border-radius: 50%;">
                 </div>
                 <section id="besid-prof-pic">
                     <div>
@@ -76,94 +77,87 @@
                     </div>
                 </section>
             </section>
-
-
-
-
-
             <section id="profile-body-flex">
                 <section id="forms-flex-side">
-                    <button class="profile-btns" id="work-button">Update My Info</button>
-
-
-                    <form class="profile-forms" action="/update" method="post">
-
-                        <label for="">Gender:</label><input type="text" name="gender">
-                        <label for="">Major:</label><input type="text" name="major">
-                        <label for="">Bio:</label><input type="text" name="bio">
-                        <label for="">Education:</label><input type="text" name="education">
-                        <label for="">Twitar:</label><input type="text" name="twitar">
-                        <label for="">GitHub:</label><input type="text" name="gitHub">
-                        <label for="">LinkedIn:</label><input type="text" name="linkedIn">
-
-                        <button class="profile-btns" id="work-button" type="submit">Save</button>
-
+                    <button class="profile-btns" id="toggle-profileInfo-form">Update My Info</button>
+                    <form class="profile-forms hide-infoForm" action="/update" method="post">
+                        <label for="">Gender:</label><input type="text" name="gender" placeholder="Gender">
+                        <label for="">Major:</label><input type="text" name="major" placeholder="Major">
+                        <label for="">Bio:</label><input type="text" name="bio" placeholder="Bio">
+                        <label for="">Education:</label><input type="text" name="education" placeholder="Education">
+                        <label for="">Twitar:</label><input type="text" name="twitar" placeholder="Twitter">
+                        <label for="">GitHub:</label><input type="text" name="gitHub" placeholder="GitHub">
+                        <label for="">LinkedIn:</label><input type="text" name="linkedIn" placeholder="LinkedIn">
+                        <button class="profile-btns" type="submit">Save</button>
                     </form>
-
-                    <button class="profile-btns" id="work-button">Update HireMe Post</button>
-
-                    <form class="profile-forms" action="/updateHireMe" method="post">
-
-
-                        <label for="">Education:</label><input type="text" name="education" value="">
-                        <label for="">Major:</label><input type="text" name="major" value="">
-                        <label for="">Email:</label><input type="text" name="email" value="">
-                        <label for="">Twitar:</label><input type="text" name="twitar" value="">
-                        <label for="">GitHub:</label><input type="text" name="github" value="">
-                        <label for="">LinkedIn:</label><input type="text" name="linkedIn" value="">
-                        <label for="">Describion:</label><textarea rows="10" cols="25" type="text" name="descr" value=""></textarea>
-
-                        <button class="profile-btns" id="work-button" type="submit">Save</button>
-
+                    <button class="profile-btns" id="toggle-profilePost-form">Update HireMe Post</button>
+                    <form class="profile-forms hide-postForm" action="/updateHireMe" method="post">
+                        <label for="">Education:</label><input type="text" name="education" placeholder="Education">
+                        <label for="">Major:</label><input type="text" name="major" placeholder="Major">
+                        <label for="">Email:</label><input type="text" name="email" placeholder="Email">
+                        <label for="">Twitar:</label><input type="text" name="twitar" placeholder="Twitter">
+                        <label for="">GitHub:</label><input type="text" name="github" placeholder="GitHub">
+                        <label for="">LinkedIn:</label><input type="text" name="linkedIn" placeholder="LinkedIn">
+                        <label for="">Describion:</label><textarea rows="10" cols="25" type="text" name="descr" placeholder="Education"></textarea><br>
+                        <button class="profile-btns" type="submit">Save</button>
                     </form>
-                    <button class="profile-btns" id="work-button"> Delete My Profile</button>
+                    <button class="profile-btns"> Delete My Profile</button>
                 </section>
-
                 <section id="details-Certificat">
-                    <div>
-                        <!-- certifcates -->
-                        <h1>My Certificates</h1>
-                        <% if(user.uCretri){
-                user.uCretri.forEach(item=>{ %>
+                    <h1>My Certificates</h1>
+                    <% if(user.uCretri){
+                            user.uCretri.forEach(item=>{ %>
+                        <div class="card">
+                            <!-- certifcates -->
                             <div>
-                                <img src="<%= item.img_url %>" alt="">
-                                <h5>Master Of
-                                    <%= item.certificat_name %>
-                                </h5>
-                                <h3>
-                                    <%= item.mark %>
-                                </h3>
-                                <h2>
-                                    <%= item.result %>
-                                </h2>
-                                <p>
-                                    <%= item.date %>
-                                </p>
+                                <div id="image-side">
+                                    <img id="certifcate-img" src="<%= item.img_url %>" alt="">
+                                </div>
+                                <div class="besid-cert-img">
+                                    <h5>
+                                        <%= item.certificat_name %> Certificate
+                                    </h5>
+                                    <h3>
+                                        <%= item.mark %>
+                                    </h3>
+                                    <h2>
+                                        <%= item.result %>
+                                    </h2>
+                                    <div id="certificate-logo">
+                                        <img src="images/Logo.png" alt="" srcset="">
+                                    </div>
+                                    <p>
+                                        Date Issued:
+                                        <%= item.date %>
+                                    </p>
+                                </div>
                             </div>
-                            <%  })     
+                        </div>
+                        <%  })     
                 
             } %>
-                    </div>
+                            <h2>Contact Me:</h2>
+                            <div id="contact-profile">
+                                <!-- Contact Me -->
+                                <% if(user.userDetailsA){ %>
+                                    <h4>
 
+                                        <a href=" <%= user.userDetailsA.twitar %>"> <i class="fab fa-twitter"></i></a>
 
-                    <div>
-                        <!-- Contact Me -->
-                        <h2>Contact Me:</h2>
-                        <% if(user.userDetailsA){ %>
-                            <h4>
-                                <%= user.userDetailsA.twitar %>
-                            </h4>
-                            <h4>
-                                <%= user.userDetailsA.github %>
-                            </h4>
-                            <h4>
-                                <%= user.userDetailsA.linkedin %>
-                            </h4>
-                            <%  } %>
-                    </div>
+                                    </h4>
+                                    <h4>
+                                        <a href="  <%= user.userDetailsA.github %>"> <i class="fab fa-github-alt"></i></a>
+
+                                    </h4>
+                                    <h4>
+                                        <a href="<%= user.userDetailsA.linkedin %>"><i class="fab fa-linkedin-in"></i></a>
+
+                                    </h4>
+                                    <%  } %>
+                            </div>
                 </section>
-
             </section>
+        </div>
     </main>
     <footer>
         <%- include('../layout/footer.ejs') %>
