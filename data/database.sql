@@ -54,4 +54,4 @@ CREATE TABLE IF NOT EXISTS certificates
     date VARCHAR(255)
 );
 
-INSERT INTO certificates (user_name, img_url, certificat_name, mark, result, date) VALUES('ali', 'images/javas', 'JS Coding', '4/5', 'PASSED', '21/7/2020');
+INSERT INTO certificates (user_name, img_url, certificat_name, mark, result, date) VALUES('ali', 'images/javas.svg', 'JS Coding', '4/5', 'PASSED', '21/7/2020');
