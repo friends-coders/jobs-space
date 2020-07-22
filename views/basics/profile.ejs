@@ -5,101 +5,170 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <title>Quizzat</title>
+    <%- include('../layout/head.ejs') %>
+
+        <title>Quizzat</title>
 </head>
 
 <body>
     <header>
+        <%- include('../layout/header.ejs') %>
 
     </header>
     <main>
-        <div>
-            <img src="images/test-img.jpg" style="border-radius: 50%;">
-        </div>
-        <div> <!-- main-details: name, email, password -->
-            <h2>Main Details:</h2>
-            <% if(user.userDetailsB){ %>
-                <h3 id="UN"><%=user.userDetailsB.user_name%></h3>
-                <h4> <%= user.userDetailsB.email %> </h4>
-          <%  }else if(user.userDetailsA){ %>
-                <h3 id="UN"><%=user.userDetailsA.user_name%></h3>
-                <h4> <%= user.userDetailsA.email %> </h4>
-        <%  } 
+        <%- include('../layout/main-load.ejs') %>
+
+            <section id="profileHead">
+                <div>
+                    <img src="images/test-img.jpg" style="border-radius: 50%;">
+                </div>
+                <section id="besid-prof-pic">
+                    <div>
+                        <!-- main-details: name, email, password -->
+                        <h2>Main Details:</h2>
+                        <% if(user.userDetailsB){ %>
+                            <h3 id="UN">
+                                Name:
+                                <%=user.userDetailsB.user_name%>
+                            </h3>
+                            <h4>
+                                Email:
+                                <%= user.userDetailsB.email %>
+                            </h4>
+                            <%  }else if(user.userDetailsA){ %>
+                                <h3 id="UN">
+                                    Name:
+                                    <%=user.userDetailsA.user_name%>
+                                </h3>
+                                <h4>
+                                    Email:
+                                    <%= user.userDetailsA.email %>
+                                </h4>
+                                <%  } 
         if(statue){ %>
-            <i id="ST" style="display: none;"><%=statue%></i>
-    <%  } %>
- 
-        </div>
-        <div> <!-- more-details: gender, spelize, education, bio  -->
-            <h2>More Details:</h2>
-            <% if(user.userDetailsA){ %>
-                <h4> <%= user.userDetailsA.gender %> </h4> 
-                    <h4> <%= user.userDetailsA.education %> </h4>
-                    <h4> <%= user.userDetailsA.major %> </h4>
-                    <p> <%= user.userDetailsA.bio %> </p>
-          <%  } %>
-        </div>
-        <div> <!-- certifcates -->
-            <h1>My Certificates</h1>
-            <% if(user.uCretri){
+                                    <i id="ST" style="display: none;"><%=statue%></i>
+                                    <%  } %>
+
+                    </div>
+                    <div>
+                        <!-- more-details: gender, spelize, education, bio  -->
+                        <h2>More Details:</h2>
+                        <% if(user.userDetailsA){ %>
+                            <h4>
+                                Gender:
+                                <%= user.userDetailsA.gender %>
+                            </h4>
+                            <h4>
+                                Education:
+                                <%= user.userDetailsA.education %>
+                            </h4>
+                            <h4>
+                                Major:
+                                <%= user.userDetailsA.major %>
+                            </h4>
+                            <p>
+
+                                <h4>Bio:
+                                </h4>
+                                <%= user.userDetailsA.bio %>
+                            </p>
+                            <%  } %>
+                    </div>
+                </section>
+            </section>
+
+
+
+
+
+            <section id="profile-body-flex">
+                <section id="forms-flex-side">
+                    <button class="profile-btns" id="work-button">Update My Info</button>
+
+
+                    <form class="profile-forms" action="/update" method="post">
+
+                        <label for="">Gender:</label><input type="text" name="gender">
+                        <label for="">Major:</label><input type="text" name="major">
+                        <label for="">Bio:</label><input type="text" name="bio">
+                        <label for="">Education:</label><input type="text" name="education">
+                        <label for="">Twitar:</label><input type="text" name="twitar">
+                        <label for="">GitHub:</label><input type="text" name="gitHub">
+                        <label for="">LinkedIn:</label><input type="text" name="linkedIn">
+
+                        <button class="profile-btns" id="work-button" type="submit">Save</button>
+
+                    </form>
+
+                    <button class="profile-btns" id="work-button">Update HireMe Post</button>
+
+                    <form class="profile-forms" action="/updateHireMe" method="post">
+
+
+                        <label for="">Education:</label><input type="text" name="education" value="">
+                        <label for="">Major:</label><input type="text" name="major" value="">
+                        <label for="">Email:</label><input type="text" name="email" value="">
+                        <label for="">Twitar:</label><input type="text" name="twitar" value="">
+                        <label for="">GitHub:</label><input type="text" name="github" value="">
+                        <label for="">LinkedIn:</label><input type="text" name="linkedIn" value="">
+                        <label for="">Describion:</label><textarea rows="10" cols="25" type="text" name="descr" value=""></textarea>
+
+                        <button class="profile-btns" id="work-button" type="submit">Save</button>
+
+                    </form>
+                    <button class="profile-btns" id="work-button"> Delete My Profile</button>
+                </section>
+
+                <section id="details-Certificat">
+                    <div>
+                        <!-- certifcates -->
+                        <h1>My Certificates</h1>
+                        <% if(user.uCretri){
                 user.uCretri.forEach(item=>{ %>
-                   <div>
-                       <img src="<%= item.img_url %>" alt="">
-                    <h5>Master Of <%= item.certificat_name %> </h5>
-                    <h3> <%= item.mark %> </h3>
-                    <h2> <%= item.result %> </h2>
-                    <p><%= item.date %></p>
-                   </div>
-           <%  })     
+                            <div>
+                                <img src="<%= item.img_url %>" alt="">
+                                <h5>Master Of
+                                    <%= item.certificat_name %>
+                                </h5>
+                                <h3>
+                                    <%= item.mark %>
+                                </h3>
+                                <h2>
+                                    <%= item.result %>
+                                </h2>
+                                <p>
+                                    <%= item.date %>
+                                </p>
+                            </div>
+                            <%  })     
                 
             } %>
-        </div>
+                    </div>
 
-        <div> <!-- Contact Me -->
-            <h2>Contact Me:</h2>
-            <% if(user.userDetailsA){ %>
-            <h4> <%= user.userDetailsA.twitar %> </h4>
-                <h4> <%= user.userDetailsA.github %> </h4>
-                <h4> <%= user.userDetailsA.linkedin %> </h4>
-        <%  } %>
-        </div>
-       
-            <button>Update My Info</button>
-            
 
-                <form action="/update" method="post">
+                    <div>
+                        <!-- Contact Me -->
+                        <h2>Contact Me:</h2>
+                        <% if(user.userDetailsA){ %>
+                            <h4>
+                                <%= user.userDetailsA.twitar %>
+                            </h4>
+                            <h4>
+                                <%= user.userDetailsA.github %>
+                            </h4>
+                            <h4>
+                                <%= user.userDetailsA.linkedin %>
+                            </h4>
+                            <%  } %>
+                    </div>
+                </section>
 
-                <label for="">Gender:<input type="text" name="gender"></label>
-                <label for="">Major:<input type="text" name="major"></label>
-                <label for="">Bio:<input type="text" name="bio"></label>
-                <label for="">Education:<input type="text" name="education"></label>
-                <label for="">Twitar:<input type="text" name="twitar"></label>
-                <label for="">GitHub:<input type="text" name="gitHub"></label>
-                <label for="">LinkedIn:<input type="text" name="linkedIn"></label>
-
-                <button type="submit">Save</button>
-        
-                </form> 
-            
-            <button>Update My HireMe Post</button>
-
-                <form action="/updateHireMe" method="post">
-
-                <!-- <label for="">YourName:<input type="text" name="user_name" value=""></label> -->
-                <label for="">Education:<input type="text" name="education" value=""></label>
-                <label for="">Major:<input type="text" name="major" value=""></label>
-                <label for="">Email:<input type="text" name="email" value=""></label>
-                <label for="">Twitar:<input type="text" name="twitar" value=""></label>
-                <label for="">GitHub:<input type="text" name="github" value=""></label>
-                <label for="">LinkedIn:<input type="text" name="linkedIn" value=""></label>
-                <label for="">Describion:<textarea rows="10" cols="25" type="text" name="descr" value=""></textarea></label>
-
-                <button type="submit">Save</button>
-        
-                </form>
-            <button>Delete My Profile</button>
-
+            </section>
     </main>
+    <footer>
+        <%- include('../layout/footer.ejs') %>
+    </footer>
     <script src="/javascript/app.js"></script>
 </body>
+
 </html>
