@@ -110,8 +110,8 @@
                                         </div>
                                     </section>
                                     <!-- this main start here -->
-                                    <div class="flex-hire">
-                                        <% emplo.forEach(item=>{ %>
+                                    <% emplo.forEach(item=>{ %>
+                                        <div class="flex-hire">
                                         <figure class="snip1540 profile-left">
                                             <div class="profile-image">
                                                 <img src="/images/person.svg" alt="profile-sample1" />
@@ -126,7 +126,7 @@
                                                 <h1><span> My name:</span> <%= item.user_name %></h1>
                                                 <h3><span> My education:</span> <%= item.education %></h3>
                                                 <h3><span> My major:</span> <%= item.major %></h3>
-                                                <h4><span> About me: <br></span> <%= item.descr %></h4>
+                                                <p><span> About me: <br></span> <%= item.descr %></p>
                                                 <p>
                                                     <span> Contact Me: </span>
                                                 </p>
@@ -138,11 +138,11 @@
                                                         href="<%= item.linkedIn %>"></a></i>
                                             </figcaption>
                                         </figure>
-                                        <%  }) %>
                                     </div>
+                                        <%  }) %>
                                     
-                                    <div class="flex-hire">
                                         <% emplo.forEach(item=>{ %>
+                                        <div class="flex-hire">
                                         <figure class="snip1540 profile-right">
                                             <div class="profile-image">
                                                 <img src="/images/person.svg" alt="profile-sample1" />
@@ -169,8 +169,8 @@
                                                         href="<%= item.linkedIn %>"></a></i>
                                             </figcaption>
                                         </figure>
-                                        <%  }) %>
                                     </div>
+                                        <%  }) %>
                                     
                                     
 

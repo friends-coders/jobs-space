@@ -63,16 +63,7 @@
                 <h4> <%= user.userDetailsA.linkedin %> </h4>
         <%  } %>
         </div>
-       <% let x;
-       let y;
-        if(user.userDetailsB){
-            x =  user.userDetailsB;
-            y = passw;
-        }else{
-            x =  user.userDetailsA;
-            y = passw;
-        }
-            if(user.user == x.user_name && y.pass == x.password){ %>
+       
             <button>Update My Info</button>
             
 
@@ -94,7 +85,7 @@
 
                 <form action="/updateHireMe" method="post">
 
-                <label for="">YourName:<input type="text" name="user_name" value=""></label>
+                <!-- <label for="">YourName:<input type="text" name="user_name" value=""></label> -->
                 <label for="">Education:<input type="text" name="education" value=""></label>
                 <label for="">Major:<input type="text" name="major" value=""></label>
                 <label for="">Email:<input type="text" name="email" value=""></label>
@@ -107,7 +98,7 @@
         
                 </form>
             <button>Delete My Profile</button>
-        <%  } %> 
+
     </main>
     <script src="/javascript/app.js"></script>
 </body>
