@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Work</title>
+    <%- include('../layout/head.ejs') %>
+    <link rel="stylesheet" href="../style/base.css">
+    <link rel="stylesheet" href="../style/layout.css">
+    <link rel="stylesheet" href="../style/modules.css">
+</head>
+
+<body>
+    <header>
+        <%- include('../layout/header.ejs') %>
+    </header>
+    <main style="padding: 15px 140px;">
+
+        <% if(trueA >= 4){ %>
+
+            <h1 id="te">Congraidlation <%= results.user_name %>!!</h1>
+            <h2>youv <%= results.result %> this exam in <%= results.certificat_name %> :]</h2>
+            <h2>& your mark is <strong><%= results.mark %></strong> </h2>
+            <h5>on <%= results.date %></h5> 
+
+       <h2>you can apply for your job.. :] <br> Go ahead..</h2>
+       
+       <div id="flex">
+
+        <div id="card">
+            <div class="flex-row">
+                <h2> <%= thJob.title %></h2>
+                <img src="<%= thJob.company_logo %>">
+            </div>
+            <h4> <span><i class="far fa-clock"></i> Work hours :</span> <%= thJob.type %> </h4> <br>
+            <h4> <span><i class="far fa-hourglass"></i> Published date :</span> <%= thJob.created_at %> </h4> <br>
+            <h4> <span><i class="far fa-building"></i> Company name :</span> <%= thJob.company %> </h4> <br>
+
+            <button type="button" class="collapsible">See description</button>
+            <div class="content">
+                <p> <%- thJob.description %> </p>
+                <span><%- thJob.how_to_apply %></span>
+            </div>
+        </div>
+
+    </div>
+     
+     <% } else{ %>
+        <!-- <script>
+            alert(`you even dont deserve alert!! -_-`);
+        </script> -->
+        <img src="<%-results.img_url%>" alt="">
+        
+        <h1>We are sory <%= results.user_name %>!!</h1>
+        <h2>youv <%= results.result %> this exam in <%= results.certificat_name %> :[</h2>
+        <h2>& your mark was <strong><%= results.mark %></strong> </h2>
+        <p>We belive that you ware <strong>unlucky</strong> at this try.. <br> So NVM we will not store the results in your profile..<br><strong><a href="/quizzes">Fell free to try again.. :]</a> </strong></p>
+        <h5>on <%= results.date %></h5>
+
+        <h2>We also recuomnd you applying for this courses to let you more ready in:</h2>
+        
+        
+   <% } %>
+   
+    </main>
+    <footer>
+        
+    </footer>
+</body>
+
+</html>

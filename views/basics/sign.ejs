@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="style/style.css">
+    <title>Sign_in</title>
+</head>
+<body>
+     <section>
+         <div class="container">
+             <div class="user signinBx">
+                 <div class="imgBx"><img src="images/1.png" alt=""> </div>
+                     <div class="formBx">
+                         <form action="/signin" id="SIForm" method="post">
+                             <h2>Sign in</h2>
+                             <input type="text" name="user_name" placeholder="User Name" required>
+                             <input type="password" name="password" placeholder="Password" required>
+                             <input type="submit" value="Login">
+                             <p class="signup">dont have an account?<a href="#" onclick="toggleForm()">Sign Up</a></p>
+                         </form>
+                     </div>
+             </div>
+
+             <div class="user signupBx">
+                    <div class="formBx">
+                        <form action="/signup" id="SUForm" method="post">
+                            <h2>Create an Account</h2>
+                            <input type="text" name="user_name" placeholder="User Name" required>
+                            <input type="email" name="email" placeholder="Email" required>
+                            <input type="password" name="password" placeholder="Password" required>
+                            <input type="password" placeholder="Confairm Password" required>
+                            <input type="submit" value="Sign Up">
+                            <p class="signup">Already have an account?<a href="#" onclick="toggleForm()">Sign In</a></p>
+                        </form>
+                    </div>
+                <div class="imgBx"><img src="images/2.png" alt=""> </div>
+            </div>
+         </div>
+     </section>
+     <script>
+         function toggleForm(){
+            let container = document.querySelector('.container');
+            container.classList.toggle('active')
+         }
+     </script>
+     <script src="javascript/app.js"></script>
+</body>
+</html>
