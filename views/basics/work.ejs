@@ -14,15 +14,16 @@
     </header>
     <main>
         <form action="/work" method="get">
-            <input type="text" name="field" id="input-Work">
+            <input type="text" name="field" id="input-Work" placeHolder="insert your job keyword.." >
             <button id="work-button">Search</button>
         </form>
         <%- include('../layout/main-load.ejs') %>
         <!-- the main data here -->
         
         <div id="flex">
-            <% if(workinfo.length != 0){ 
-               workinfo.forEach((item, idx)=>{ %>
+            <% if(workinfo.length != 0){ %>
+               <h1>Results:</h1> 
+             <%  workinfo.forEach((item, idx)=>{ %>
             <div id="card">
                 <div class="flex-row">
                     <h2> <%= item.title %></h2>
