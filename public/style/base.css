@@ -1,7 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Baloo+Thambi+2:wght@500&display=swap");
+
 /* 
 font-family: 'Baloo Thambi 2', cursive;
  */
+
 * {
     font-family: "Baloo Thambi 2", cursive;
     box-sizing: border-box;
@@ -434,11 +436,9 @@ h1#aboutUsHeading {
     justify-content: space-evenly;
 }
 
-
 .profile-left figcaption {
     background-color: #5c6ac4;
 }
-
 
 .profile-left figcaption span {
     color: #000;
@@ -506,7 +506,6 @@ h1#aboutUsHeading {
     cursor: pointer;
 }
 
-
 .submit-quiz {
     margin: 50px 35%;
     padding: 10px 80px;
@@ -525,3 +524,166 @@ h1#aboutUsHeading {
 
 
 /* end style quizzat page */
+
+
+/* Start Profile Page */
+
+::placeholder {
+    color: blue;
+}
+
+#profileHead {
+    margin-top: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+#profileHead img {
+    margin-left: -17%;
+}
+
+#details-Certificat {
+    display: flex;
+    flex-direction: column;
+    /* background-color: lightcoral; */
+    width: 55%;
+}
+
+#details-Certificat>div {
+    text-align: center;
+}
+
+#besid-prof-pic {
+    display: flex;
+    flex-direction: column;
+}
+
+#besid-prof-pic>div {
+    margin-top: 20%;
+    margin-left: -175%;
+}
+
+#forms-flex-side {
+    display: flex;
+    flex-direction: column;
+    width: 55%;
+    justify-content: center;
+}
+
+#profile-body-flex {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 340px;
+}
+
+.profile-forms {
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+}
+
+.profile-forms input {
+    width: 90%;
+    margin-left: 5%;
+    height: 8%;
+    border-radius: 2%;
+}
+
+.profile-forms textarea {
+    width: 90%;
+    margin-left: 5%;
+    /* height: 8%; */
+    border-radius: 2%;
+}
+
+.profile-forms label {
+    margin-left: 5%;
+    font-size: 25px;
+}
+
+.profile-btns {
+    margin: 5% 20%;
+    width: 60%;
+    font-weight: 700;
+    background: #5c6ac4;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    box-shadow: #111111a8 1px 1px 2px 1px;
+    height: 50px;
+}
+
+.card {
+    width: 450px;
+    height: 250px;
+    background-color: #fff;
+    background: linear-gradient(#f8f8f8, #fff);
+    box-shadow: 0 8px 16px -8px rgba(0, 0, 0, 0.4);
+    border-radius: 6px;
+    overflow: hidden;
+    position: relative;
+    margin: 1.5rem;
+}
+
+.card h1 {
+    text-align: right;
+}
+
+#image-side {
+    position: absolute;
+    width: 150px;
+    height: 100%;
+    /* background: linear-gradient(#dE685E, #EE786E); */
+    transition: width 0.4s;
+}
+
+.besid-cert-img {
+    margin-left: 100px;
+}
+
+#image-side {
+    height: 100%;
+}
+
+.card p {
+    float: right;
+    margin-top: 15%;
+}
+
+.card h5 {
+    margin-top: 5%;
+}
+
+.card h2 {
+    color: green;
+}
+
+#certificate-logo {
+    /* border-radius: 50%; */
+    width: 120px;
+    height: 120px;
+    float: right;
+    margin-bottom: 15%;
+}
+
+#contact-profile {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.hide-infoForm {
+    display: none;
+}
+
+.hide-postForm {
+    display: none;
+}
+
+#certifcate-img {
+    margin-top: 35%;
+}
+
+
+/* End Profile Page */
