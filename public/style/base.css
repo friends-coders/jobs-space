@@ -9,12 +9,6 @@ font-family: 'Baloo Thambi 2', cursive;
     box-sizing: border-box;
 }
 
-#error {
-    background-image: url(/images/404.png);
-    background-repeat: no-repeat;
-    background-size: cover;
-}
-
 #navbar {
     height: 60px;
     background: #111111;
@@ -234,6 +228,7 @@ a:hover {
 
 .bigcontainer {
     width: 85%;
+    height: 45vh;
     display: flex;
     margin: 50px auto;
     background-color: #201f1fd2;
@@ -269,7 +264,7 @@ a:hover {
 .personalimg {
     border-radius: 15px;
     height: 350px;
-    width: 300px;
+    /* width: 100%; */
     border: 2px solid #5c6ac4;
 }
 
@@ -486,121 +481,74 @@ h1#aboutUsHeading {
 }
 
 
-/* prfile */
+/* start style quizzat page */
 
-
-/* #success_message{ display: none;} */
-
-#profileImg-details {
-    margin: 100px 0px;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-between;
-}
-
-#profileDBdetails {
-    text-align: start;
-    margin: 5% 30% 0 0;
-}
-
-#profilePic {
-    border-radius: 5%;
-    height: 300px;
-    padding: 10px;
-    margin-left: 100px;
-}
-
-.container i {
-    border: 1px dotted black;
-    padding: 12px;
-    border-radius: 10% 0 0 10%;
-    /* background-color: lawngreen; */
-}
-
-i.bioIcon {
-    padding-top: 30px;
-    padding-bottom: 30px;
-}
-
-.section {
-    background-color: tomato;
-}
-
-#formsProfileContainer {
-    float: left;
-    width: 45%;
-}
-
-#flex-section-profile {
-    display: flex;
-    flex-direction: column;
-    /* justify-content: left; */
-    padding-left: 15%;
-}
-
-#ffff {
-    padding-left: 56%;
-}
-
-
-/* Testing Card */
-
-.card {
-    width: 450px;
-    height: 250px;
-    background-color: #fff;
-    background: linear-gradient(#f8f8f8, #fff);
-    box-shadow: 0 8px 16px -8px rgba(0, 0, 0, 0.4);
+.questionSection {
+    background-color: white;
+    margin-bottom: 50px;
+    color: #201f1fd2;
+    height: 370px;
     border-radius: 6px;
-    overflow: hidden;
-    position: relative;
-    margin: 1.5rem;
+    border-top: 4px solid #5c6ac4;
+    padding: 20px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 }
 
-.card .additional {
-    width: 150px;
-    height: 100%;
-    background: linear-gradient(#dE685E, #EE786E);
-    transition: width 0.4s;
-    overflow: hidden;
-    z-index: 2;
+.answerArea {
+    width: 90%;
+    background-color: #f8f9fa;
+    margin-bottom: 40px;
+    margin-left: 35px;
+    margin-bottom: 50px;
 }
 
-.card .additional .more-info {
-    width: 300px;
-    float: left;
-    position: absolute;
-    left: 150px;
-    height: 100%;
+.answerArea * {
+    margin: 7px;
+    cursor: pointer;
 }
 
-.card .general {
-    width: 300px;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    right: 0;
-    z-index: 1;
-    box-sizing: border-box;
-    padding: 1rem;
-    padding-top: 0;
+.submitButton {
+    padding: 10px 80px;
+    background: #5c6ac4;
+    color: white;
+    border-radius: 4px;
+    box-shadow: #111111a8 1px 1px 2px 1px;
+    margin-left: 40px;
+    margin-top: 12px;
+    cursor: pointer;
 }
 
-.card .general .more {
-    position: absolute;
-    bottom: 1rem;
-    right: 1rem;
-    font-size: 0.9em;
+.submitButton:hover {
+    opacity: 0.7;
+    cursor: pointer;
 }
 
-#hide {
-    display: none;
+.submit-quiz:hover {
+    opacity: 0.7;
+    cursor: pointer;
 }
 
-#formsProfileContainer>button {
-    float-right: 50%;
+.searchInput {
+    width: 57%;
+    padding: 8px;
+    margin: 6% 0% 16% 10%;
+}
+
+.submit-quiz {
+    margin: 50px 35%;
+    padding: 10px 80px;
+    background: #5c6ac4;
+    color: white;
+    border-radius: 4px;
+    box-shadow: #111111a8 1px 1px 2px 1px;
+    width: 30%;
+}
+
+.h2 {
+    margin-top: 50px;
+    margin-left: 22%;
+    color: #201f1fd2;
 }
 
 
-/* Testeing Card */
+/* end style quizzat page */

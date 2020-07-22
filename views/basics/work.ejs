@@ -16,12 +16,12 @@
         <%- include('../layout/main-load.ejs') %>
         <!-- the main data here -->
         <form action="/work" method="get">
-            <input type="text" name="city" id="input-Work">
+            <input type="text" name="field" id="input-Work">
             <button id="work-button">Search</button>
         </form>
         <div id="flex">
             <% if(workinfo.length != 0){ 
-               workinfo.forEach(item =>{ %>
+               workinfo.forEach((item, idx)=>{ %>
             <div id="card">
                 <div class="flex-row">
                     <h2> <%= item.title %></h2>
@@ -30,6 +30,7 @@
                 <h4> <span><i class="far fa-clock"></i> Work hours :</span> <%= item.type %> </h4> <br>
                 <h4> <span><i class="far fa-hourglass"></i> Published date :</span> <%= item.created_at %> </h4> <br>
                 <h4> <span><i class="far fa-building"></i> Company name :</span> <%= item.company %> </h4> <br>
+                <button><a href="/work/<%= idx %>">Am I Qulfied?</a></button>
                 <button type="button" class="collapsible">See description</button>
                 <div class="content">
                     <p> <%- item.description %> </p>

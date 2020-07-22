@@ -332,6 +332,50 @@
       <footer>
         <%- include('../layout/footer.ejs') %>
       </footer>
+        <div> <!-- Contact Me -->
+            <h2>Contact Me:</h2>
+            <% if(user.userDetailsA){ %>
+            <h4> <%= user.userDetailsA.twitar %> </h4>
+                <h4> <%= user.userDetailsA.github %> </h4>
+                <h4> <%= user.userDetailsA.linkedin %> </h4>
+        <%  } %>
+        </div>
+       
+            <button>Update My Info</button>
+            
+
+                <form action="/update" method="post">
+
+                <label for="">Gender:<input type="text" name="gender"></label>
+                <label for="">Major:<input type="text" name="major"></label>
+                <label for="">Bio:<input type="text" name="bio"></label>
+                <label for="">Education:<input type="text" name="education"></label>
+                <label for="">Twitar:<input type="text" name="twitar"></label>
+                <label for="">GitHub:<input type="text" name="gitHub"></label>
+                <label for="">LinkedIn:<input type="text" name="linkedIn"></label>
+
+                <button type="submit">Save</button>
+        
+                </form> 
+            
+            <button>Update My HireMe Post</button>
+
+                <form action="/updateHireMe" method="post">
+
+                <!-- <label for="">YourName:<input type="text" name="user_name" value=""></label> -->
+                <label for="">Education:<input type="text" name="education" value=""></label>
+                <label for="">Major:<input type="text" name="major" value=""></label>
+                <label for="">Email:<input type="text" name="email" value=""></label>
+                <label for="">Twitar:<input type="text" name="twitar" value=""></label>
+                <label for="">GitHub:<input type="text" name="github" value=""></label>
+                <label for="">LinkedIn:<input type="text" name="linkedIn" value=""></label>
+                <label for="">Describion:<textarea rows="10" cols="25" type="text" name="descr" value=""></textarea></label>
+
+                <button type="submit">Save</button>
+        
+                </form>
+            <button>Delete My Profile</button>
+
     </main>
   </body>
 </html>

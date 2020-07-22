@@ -1,15 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Coursat</title>
     <%- include('../layout/head.ejs') %>
-  </head>
+</head>
 
-  <body>
+<body>
     <header>
-      <%- include('../layout/header.ejs') %>
+        <%- include('../layout/header.ejs') %>
     </header>
     <main>
         <div class="tb-content elementor-page">
@@ -51,7 +52,9 @@
                                                                                         </div>
                                                                                         <div
                                                                                             class="tb-hero-subtitle tb-f20-lg tb-line1-6 tb-mb2">
-                                                                                            Courses You Can Take Right Now to Advance Your Career (and They’re Free!)
+                                                                                            Courses You Can Take Right
+                                                                                            Now to Advance Your Career
+                                                                                            (and They’re Free!)
 
 
                                                                                         </div>
@@ -110,37 +113,37 @@
                                             </div>
                                         </div>
                                     </section>
-      <!-- main in this page -->
+                                    <!-- main in this page -->
 
-      <form action="/courses" method="get">
-        <input type="text" name="couresName" id="input-Work" />
-        <button id="work-button">Search</button>
-      </form>
-      <div id="flex">
-        <% if(courseInfo.length != 0){ courseInfo.forEach(item =>{ %>
-        <div id="couresCard">
-            <div class="flex-row" id="courseCardImg">
-            <h2><%= item.name %></h2>
-            <img src="<%= item.photoUrl %>" width="150px" height="150px" />
-            </div>
-          <!-- <ul id="cardUL"></ul> -->
-                   
-            
-                 
-          <p  id="courseCardPara"><i class="fas fa-globe"></i> Course Language : <%=
-            item.primaryLanguages.toUpperCase() %> <br>
-              <%= item.description.slice(0,250) %>. . .</p>
-            
-          <button type="button" class="collapsible">Read more</button>
-          <div class="content">
-            <p><%= item.description %></p>
-          </div>
-        </div>
-        <% }); } %>
-      </div>
+                                    <form action="/courses" method="get">
+                                        <input type="text" name="couresName" id="input-Work" />
+                                        <button id="work-button">Search</button>
+                                    </form>
+                                    <div id="flex">
+                                        <% if(courseInfo.length != 0){ courseInfo.forEach(item =>{ %>
+                                        <div id="couresCard">
+                                            <div class="flex-row" id="courseCardImg">
+                                                <h2><%= item.name %></h2>
+                                                <img src="<%= item.photoUrl %>" width="150px" height="150px" />
+                                            </div>
+                                            <!-- <ul id="cardUL"></ul> -->
+
+
+
+                                            <p id="courseCardPara"><i class="fas fa-globe"></i> Course Language : <%=item.primaryLanguages.toUpperCase() %> <br>
+                                                <%= item.description.slice(0,250) %>. . .</p>
+
+                                            <button type="button" class="collapsible">Read more</button>
+                                            <div class="content">
+                                                <p><%= item.description %></p>
+                                            </div>
+                                        </div>
+                                        <% }); } %>
+                                    </div>
     </main>
     <footer>
-      <%- include('../layout/footer.ejs') %>
+        <%- include('../layout/footer.ejs') %>
     </footer>
-  </body>
+</body>
+
 </html>
