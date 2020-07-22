@@ -6,78 +6,128 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Results</title>
     <%- include('../layout/head.ejs') %>
+
 </head>
 
 <body>
     <header>
         <%- include('../layout/header.ejs') %>
     </header>
-    
-    <main style="padding: 15px 140px;">
 
-            <% if(trueA >= 4){ %>
-                <!-- <script>
+    <main style="padding: 15px 140px;">
+        <div class="tb-content elementor-page">
+            <div class="col-md-12">
+                <div>
+
+
+                    <% if(trueA >= 4){ %>
+                        <!-- <script>
                     alert(`you made <%= trueA %> correct answers, well done!! :]`);
                 </script> -->
-                <h1>Congraidlation <%= results.user_name %>!!</h1>
-                <h2>youv <%= results.result %> this exam in <%= results.certificat_name %> :]</h2>
-                <h2>& your mark is <strong><%= results.mark %></strong> </h2>
-                <h5>on <%= results.date %></h5> 
+                        <section class='resultCart'>
+                            <h1 class='blinkGreen'>Congraidlation
+                                <%= results.user_name %>!!</h1>
+                            <h2 class='h22'>you are
+                                <span class="blinkGreen"> <%= results.result %></span> in this exam
+                                <%= results.certificat_name %> & your mark is <strong class="blinkGreen"><%= results.mark %></strong>
+                            </h2>
+                            <!-- <h2>& your mark is <strong><%= results.mark %></strong> </h2> -->
+                            <h5 class="pInCart">on
+                                <%= results.date %>
+                            </h5>
 
-           <h2>We Recuomnd You To Try Apply For This JObs Offres:</h2>
-           <%    appo.forEach(item =>{ if(item){%>
-         <div id="card">
-             <div class="flex-row">
-                 <h2> <%= item.title %></h2>
-                 <img src="<%= item.company_logo %>">
-             </div>
-             <h4> <span><i class="far fa-clock"></i> Work hours :</span> <%= item.type %> </h4> <br>
-             <h4> <span><i class="far fa-hourglass"></i> Published date :</span> <%= item.created_at %> </h4> <br>
-             <h4> <span><i class="far fa-building"></i> Company name :</span> <%= item.company %> </h4> <br>
-             <button type="button" class="collapsible">See description</button>
-             <div class="content">
-                 <p> <%- item.description %> </p>
-                 <span><%- item.how_to_apply %></span>
-             </div>
-         </div>
-         <% }})} else{ %>
-            <!-- <script>
+                        </section>
+
+                        <hr>
+
+
+                        <h2 style="margin: 5%; margin-left: 10%;">We are Recommend You To Try Apply For This Job Offres:
+                        </h2>
+                        <%    appo.forEach(item =>{ if(item){%>
+                            <div id="card">
+                                <div class="flex-row">
+                                    <h2>
+                                        <%= item.title %>
+                                    </h2>
+                                    <img src="<%= item.company_logo %>">
+                                </div>
+                                <h4> <span><i class="far fa-clock"></i> Work hours :</span>
+                                    <%= item.type %>
+                                </h4> <br>
+                                <h4> <span><i class="far fa-hourglass"></i> Published date :</span>
+                                    <%= item.created_at %>
+                                </h4> <br>
+                                <h4> <span><i class="far fa-building"></i> Company name :</span>
+                                    <%= item.company %>
+                                </h4> <br>
+                                <button type="button" class="collapsible">See description</button>
+                                <div class="content">
+                                    <p>
+                                        <%- item.description %>
+                                    </p>
+                                    <span><%- item.how_to_apply %></span>
+                                </div>
+                            </div>
+                            <% }})} else{ %>
+                                <!-- <script>
                 alert(`you even dont deserve alert!! -_-`);
             </script> -->
-            <h1>We are sory <%= results.user_name %>!!</h1>
-            <h2>youv <%= results.result %> this exam in <%= results.certificat_name %> :[</h2>
-            <h2>& your mark was <strong><%= results.mark %></strong> </h2>
-            <p>We belive that you ware <strong>unlucky</strong> at this try.. <br> So NVM we will not store the results in your profile..<br><strong><a href="/quizzes">Fell free to try again.. :]</a> </strong></p>
-            <h5>on <%= results.date %></h5>
+                                <section class="resultCart">
+                                    <h1 class='blinkRed'>We are sorry
+                                        <%= results.user_name %>!!</h1>
+                                    <h2 class='h22'>you are
+                                        <span class='blinkRed'> <%= results.result %> </span> in this exam
+                                        <%= results.certificat_name %> & your mark was <strong class="blinkRed"><%= results.mark %></strong>
+                                    </h2>
+                                    <!-- <h2>& your mark was <strong><%= results.mark %></strong> </h2> -->
+                                    <p class='pInCart'>We belive that you ware <strong>unlucky</strong> at this try.. <br> So NVM we will not store the results in your profile..<br><strong><a href="/quizzes">Feel free to try
+                                    again.. :]</a>
+                            </strong></p>
+                                    <h5 class="pInCart">on
+                                        <%= results.date %>
+                                    </h5>
+                                </section>
+                                <hr>
+                                <h2 style="margin: 5%; margin-left: 10%;">We are also Recommend you applying for this courses to let you more ready in:</h2>
 
-            <h2>We also recuomnd you applying for this courses to let you more ready in:</h2>
-            
-            <div id="flex">
-                <%  appo.forEach(item =>{ if(item){ %>
-                    
-                    <div id="couresCard">
-                        <div class="flex-row" id="courseCardImg">
-                            <h2><%= item.name %></h2>
-                            <img src="<%= item.photoUrl %>" width="150px" height="150px" />
-                        </div>
-                        <!-- <ul id="cardUL"></ul> -->
+                                <div id="flex">
+                                    <%  appo.forEach(item =>{ if(item){ %>
+
+                                        <div id="couresCard">
+                                            <div class="flex-row" id="courseCardImg">
+                                                <h2>
+                                                    <%= item.name %>
+                                                </h2>
+                                                <img src="<%= item.photoUrl %>" width="150px" height="150px" />
+                                            </div>
+                                            <!-- <ul id="cardUL"></ul> -->
 
 
 
-                        <p id="courseCardPara"><i class="fas fa-globe"></i> Course Language : <%=item.primaryLanguages[0].toUpperCase() %> <br>
-                            <%= item.description.slice(0,250) %>. . .</p>
+                                            <p id="courseCardPara"><i class="fas fa-globe"></i> Course Language :
+                                                <%=item.primaryLanguages[0].toUpperCase() %> <br>
+                                                    <%= item.description.slice(0,250) %>. . .</p>
 
-                        <button type="button" class="collapsible">Read more</button>
-                        <div class="content">
-                            <p><%= item.description %></p>
-                        </div>
-                    </div>
+                                            <button type="button" class="collapsible">Read more</button>
+                                            <div class="content">
+                                                <p>
+                                                    <%= item.description %>
+                                                </p>
+                                            </div>
+                                        </div>
 
+                                </div>
+
+                                <% }}) %>
+                                    <% } %>
                 </div>
-
-            <% }}) %>
-       <% } %>
-         
+            </div>
+        </div>
     </main>
 </body>
+<script src="/javascript/app.js"></script>
+<footer>
+    <!-- <%- include('../layout/footer.ejs') %> -->
+</footer>
+
 </html>
