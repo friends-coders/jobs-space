@@ -583,6 +583,8 @@ h1#aboutUsHeading {
     margin-top: 10px;
 }
 
+
+
 .profile-forms input {
     width: 90%;
     margin-left: 5%;
@@ -685,5 +687,8 @@ h1#aboutUsHeading {
     margin-top: 35%;
 }
 
-
+.forms{
+    width: 20%;
+    background-color: red;
+}
 /* End Profile Page */
