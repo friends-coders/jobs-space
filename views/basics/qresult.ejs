@@ -24,7 +24,7 @@
             <h2>& your mark is <strong><%= results.mark %></strong> </h2>
             <h5>on <%= results.date %></h5> 
 
-       <h2>you can apply for your job.. :] <br> Go ahead..</h2>
+       <h2>you can apply for your job.. <br> Go ahead..</h2>
        
        <div id="flex">
 
@@ -52,14 +52,11 @@
         </script> -->
         <img src="<%-results.img_url%>" alt="">
         
-        <h1>We are sory <%= results.user_name %>!!</h1>
-        <h2>youv <%= results.result %> this exam in <%= results.certificat_name %> :[</h2>
-        <h2>& your mark was <strong><%= results.mark %></strong> </h2>
-        <p>We belive that you ware <strong>unlucky</strong> at this try.. <br> So NVM we will not store the results in your profile..<br><strong><a href="/quizzes">Fell free to try again.. :]</a> </strong></p>
+        <h1>We are sorry <%= results.user_name %>!!</h1>
+        <h2>you've <%= results.result %> this exam in <%= results.certificat_name %> :[</h2>
+        <h2>And your mark was <strong><%= results.mark %></strong> </h2>
+        <p>We belive that you were <strong>unlucky</strong> at this try.. <br> So we will not store the results in your profile..<br><strong><a href="/quizzes">Fell free to try again.. :]</a> </strong></p>
         <h5>on <%= results.date %></h5>
-
-        <h2>We also recuomnd you applying for this courses to let you more ready in:</h2>
-        
         
    <% } %>
    
