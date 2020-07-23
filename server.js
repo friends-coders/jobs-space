@@ -201,7 +201,7 @@ server.post("/work/:thJobDx", (req, res) => {
 
 
     }else{ // user & NOT PASSED
-      statu = `FAILL`;
+      statu = `Failed`;
       let failRes = {
         user_name : userIn.user,
         img_url : picR,
@@ -389,7 +389,7 @@ server.post('/results', (req, res)=>{
 
 
     }else{ // user & NOT PASSED
-      statu = `FAILL`;
+      statu = `Failed`;
       let failRes = {
         user_name : userIn.user,
         img_url : qSP,
