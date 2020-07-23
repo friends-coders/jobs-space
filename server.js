@@ -548,6 +548,9 @@ server.post('/signup', (req, res)=>{
 })
 
 
+
+
+
 // sign out ////////////////////////////////////////////////////////////////////
 server.get('/signOut', (req, res)=>{
   user = '';
@@ -604,7 +607,7 @@ server.post('/update', (req, res)=>{
       }else{
         client.query(SQL2, safeValues2).then(() => {
           client.query(SQL3).then((results) => {
-            console.log(results.rows)
+            console.log(results.rows, 'seeeeeeeeee')
             userIn.userDetailsA = results.rows[0];
             res.render("basics/profile", { user : userIn, statue: true, passw : pass});
           })

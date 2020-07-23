@@ -239,6 +239,7 @@ a:hover {
 .bigcontainer {
     width: 85%;
     /* height: 45vh; */
+    min-height: 100vh;
     display: flex;
     margin: 50px auto;
     background-color: #201f1fd2;
@@ -714,7 +715,8 @@ h1#aboutUsHeading {
 #contact-profile {
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly;
+
+    justify-content: space-between;
 }
 
 .hide-infoForm {

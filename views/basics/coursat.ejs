@@ -121,6 +121,9 @@
                                     <div id="flex">
                                         <% if(courseInfo.length != 0){ courseInfo.forEach(item =>{ %>
                                         <div id="couresCard">
+                                            <script>
+                                                window.scrollTo(300, 500, 'smooth');
+                                            </script>
                                             <div class="flex-row" id="courseCardImg">
                                                 <h2><%= item.name %></h2>
                                                 <img src="<%= item.photoUrl %>" width="150px" height="150px" />
