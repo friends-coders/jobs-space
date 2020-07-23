@@ -41,7 +41,7 @@ CREATE TABLE IF NOT EXISTS hireme
     descr VARCHAR(255)
 );
 
--- INSERT INTO hireme (user_name, img_url, education, major, email, github, twitar, linkedIn, descr) VALUES('ali', 'images/test-img.jpg', 'enginer', 'doctor', 'ali@ali.com', 'ali.github.com', 'ali.twiter.com', 'ali.linkedin.com', 'noooob in gaming');
+INSERT INTO hireme (user_name, img_url, education, major, email, github, twitar, linkedIn, descr) VALUES('Abd', 'images/test-img.jpg', 'web development', 'IT', 'abd@it.com', 'abd.github.com', 'abd.twiter.com', 'abd.linkedin.com', 'a passionate programmer');
 
 DROP TABLE IF EXISTS certificates;
 CREATE TABLE IF NOT EXISTS certificates
