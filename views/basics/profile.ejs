@@ -26,20 +26,20 @@
                 <section id="besid-prof-pic">
                     <div>
                         <!-- main-details: name, email, password -->
-                        <h2>Main Details:</h2>
+                        <h2 style="color: red;">Main Details:</h2>
                         <% if(user.userDetailsB){ %>
-                            <h3 id="UN">
+                            <h3>
                                 Name:
-                                <%=user.userDetailsB.user_name%>
+                                <h3 id="UN" style="font-size: 43px; font-weight: 900;"><%=user.userDetailsB.user_name%></h3>
                             </h3>
                             <h4>
                                 Email:
                                 <%= user.userDetailsB.email %>
                             </h4>
                             <%  }else if(user.userDetailsA){ %>
-                                <h3 id="UN">
+                                <h3>
                                     Name:
-                                    <%=user.userDetailsA.user_name%>
+                                    <h3 id="UN" style="font-size: 43px; font-weight: 900;"><%=user.userDetailsA.user_name%></h3>
                                 </h3>
                                 <h4>
                                     Email:
@@ -53,7 +53,7 @@
                     </div>
                     <div>
                         <!-- more-details: gender, spelize, education, bio  -->
-                        <h2>More Details:</h2>
+                        <h2  style="color: red;">More Details:</h2>
                         <% if(user.userDetailsA){ %>
                             <h4>
                                 Gender:
@@ -79,34 +79,34 @@
             </section>
             <section id="profile-body-flex">
                 <section id="forms-flex-side">
-                    <button class="profile-btns" id="toggle-profileInfo-form">Update My Info</button>
-                    <form class="profile-forms hide-infoForm" action="/update" method="post">
+                    <button class="profile-btns update" id="toggle-profileInfo-form">Update My Info</button>
+                    <form class="profile-forms hide-infoForm updateFo" action="/update" method="post">
                         <label for="">Gender:</label><input type="text" name="gender" placeholder="Gender">
                         <label for="">Major:</label><input type="text" name="major" placeholder="Major">
-                        <label for="">Bio:</label><input type="text" name="bio" placeholder="Bio">
+                        <label for="">Bio:</label><input maxlength="250" type="text" name="bio" placeholder="Bio">
                         <label for="">Education:</label><input type="text" name="education" placeholder="Education">
                         <label for="">Twitar:</label><input type="text" name="twitar" placeholder="Twitter">
                         <label for="">GitHub:</label><input type="text" name="gitHub" placeholder="GitHub">
                         <label for="">LinkedIn:</label><input type="text" name="linkedIn" placeholder="LinkedIn">
-                        <button class="profile-btns" type="submit">Save</button>
-                    </form>
-                    <button class="profile-btns" id="toggle-profilePost-form">Update HireMe Post</button>
-                    <form class="profile-forms hide-postForm" action="/updateHireMe" method="post">
+                        <button class="profile-btns forms" type="submit">Save</button>
+                    </form> <br> <br>
+                    <button class="profile-btns updateHi" id="toggle-profilePost-form">Update HireMe Post</button>
+                    <form class="profile-forms hide-postForm updateHiFo" action="/updateHireMe" method="post">
                         <label for="">Education:</label><input type="text" name="education" placeholder="Education">
                         <label for="">Major:</label><input type="text" name="major" placeholder="Major">
                         <label for="">Email:</label><input type="text" name="email" placeholder="Email">
                         <label for="">Twitar:</label><input type="text" name="twitar" placeholder="Twitter">
                         <label for="">GitHub:</label><input type="text" name="github" placeholder="GitHub">
                         <label for="">LinkedIn:</label><input type="text" name="linkedIn" placeholder="LinkedIn">
-                        <label for="">Describion:</label><textarea rows="10" cols="25" type="text" name="descr" placeholder="Education"></textarea><br>
-                        <button class="profile-btns" type="submit">Save</button>
-                    </form>
-                    <button class="profile-btns"> Delete My Profile</button>
+                        <label for="">Describion:</label><textarea maxlength="250" rows="8" cols="20" type="text" name="descr" placeholder="Education"></textarea><br>
+                        <button class="profile-btns forms" type="submit">Save</button>
+                    </form> <br> <br> <br> <br> <br> <br>
+                    <button class="profile-btns">Delete My Profile</button>
                 </section>
-                <section id="details-Certificat">
-                    <h1>My Certificates</h1>
-                    <% if(user.uCretri){
-                            user.uCretri.forEach(item=>{ %>
+                <% if(user.uCretri != 0){ %>
+                    <section id="details-Certificat">
+                        <h1 style="color: red;">My Certificates :</h1>
+                        <%    user.uCretri.forEach(item=>{ %>
                         <div class="card">
                             <!-- certifcates -->
                             <div>
@@ -136,10 +136,11 @@
                         <%  })     
                 
             } %>
-                            <h2>Contact Me:</h2>
+                            <h2 style="color: red;">Contact Me:</h2> 
                             <div id="contact-profile">
                                 <!-- Contact Me -->
                                 <% if(user.userDetailsA){ %>
+                                    
                                     <h4>
 
                                         <a href=" <%= user.userDetailsA.twitar %>"> <i class="fab fa-twitter"></i></a>

@@ -239,6 +239,7 @@ a:hover {
 .bigcontainer {
     width: 85%;
     /* height: 45vh; */
+    min-height: 100vh;
     display: flex;
     margin: 50px auto;
     background-color: #201f1fd2;
@@ -625,6 +626,8 @@ h1#aboutUsHeading {
     margin-top: 10px;
 }
 
+
+
 .profile-forms input {
     width: 90%;
     margin-left: 5%;
@@ -712,7 +715,8 @@ h1#aboutUsHeading {
 #contact-profile {
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly;
+
+    justify-content: space-between;
 }
 
 .hide-infoForm {
@@ -727,5 +731,8 @@ h1#aboutUsHeading {
     margin-top: 35%;
 }
 
-
+.forms{
+    width: 20%;
+    background-color: red;
+}
 /* End Profile Page */

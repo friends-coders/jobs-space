@@ -42,8 +42,13 @@ let spass;
     set();
   }
 
+  $('.update').on('click', function(){
+    $('.updateFo').toggle();
+  })
 
-
+  $('.updateHi').on('click', function(){
+    $('.updateHiFo').toggle();
+  })
   
 
 
