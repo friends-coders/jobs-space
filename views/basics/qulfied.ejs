@@ -6,9 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Work</title>
     <%- include('../layout/head.ejs') %>
-    <link rel="stylesheet" href="../style/base.css">
+    <!-- <link rel="stylesheet" href="../style/base.css">
     <link rel="stylesheet" href="../style/layout.css">
-    <link rel="stylesheet" href="../style/modules.css">
+    <link rel="stylesheet" href="../style/modules.css"> -->
 </head>
 
 <body>
@@ -55,7 +55,14 @@ if(item[0].answers.answer_d != null){ %>
                 <% } %>
         </div>
 <% } else { %>
-    <h1>yes you are ready</h1>
+    <h1>yes you are ready.. :)</h1>
+    <h2 style='padding: 2% 50% 0;'> <%= apprtunty.title %></h2>
+    <img style='padding: 0 0% 10%;' src="<%= apprtunty.company_logo %>">
+    <h4> <span><i class="far fa-clock"></i> Work hours :</span> <%= apprtunty.type %> </h4> <br>
+    <h4> <span><i class="far fa-hourglass"></i> Published date :</span> <%= apprtunty.created_at %> </h4> <br>
+    <h4> <span><i class="far fa-building"></i> Company name :</span> <%= apprtunty.company %> </h4> <br>
+    <%- apprtunty.description %> 
+    <span><%- apprtunty.how_to_apply %></span>
     <% } %>
     </main>
     <footer>
