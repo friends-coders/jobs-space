@@ -83,7 +83,7 @@
         <h2 style="margin: 5%; margin-left: 10%;">We are also Recommend you applying for this courses to let you more ready in:</h2>
 
         <div id="flex">
-            <%  appo.forEach(item =>{ if(item){ %>
+            <%  thJob.forEach(item =>{ if(item){ %>
 
                 <div id="couresCard">
                     <div class="flex-row" id="courseCardImg">
@@ -97,7 +97,7 @@
 
 
                     <p id="courseCardPara"><i class="fas fa-globe"></i> Course Language :
-                        <%=item.primaryLanguages[0].toUpperCase() %> <br>
+                        <%=item.primaryLanguages?item.primaryLanguages[0].toUpperCase():'en' %> <br>
                             <%= item.description.slice(0,250) %>. . .</p>
 
                     <button type="button" class="collapsible">Read more</button>

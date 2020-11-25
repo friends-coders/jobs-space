@@ -125,8 +125,8 @@ server.get("/work/:idx", (req, res) => {
 
       
     }else{
-      console.log('msh 0! :|')
-      res.render('basics/qulfied', { stat : false})
+      console.log(offers[job], 'yesssssssss hadd hooe 8)')
+      res.render('basics/qulfied', { stat : false, apprtunty : offers[job] })
     }
   })
   }else{
@@ -178,7 +178,8 @@ server.post("/work/:thJobDx", (req, res) => {
           client.query(SQL2).then(result4 =>{
             console.log(result4.rows)
             let results4 = result4.rows[0];
-              res.render("basics/qresult", {trueA : trueA, results : results4, thJob : offers[jN]});
+            console.log(offers)
+              res.render("basics/qresult", {trueA : trueA, results : results4, thJob : offers});
           })
         })
       }
@@ -189,7 +190,8 @@ server.post("/work/:thJobDx", (req, res) => {
           client.query(SQL2).then(result4 =>{
             console.log('1st  ',result4.rows)
             // let results4 = result4.rows;
-            res.render("basics/qresult", {trueA : trueA, results : result4.rows, thJob : offers[jN]});
+            console.log(offers)
+            res.render("basics/qresult", {trueA : trueA, results : result4.rows, thJob : offers});
           })
         })
       }
@@ -210,10 +212,23 @@ server.post("/work/:thJobDx", (req, res) => {
         result : statu,
         date : TDa,
       }
+      let urlx = `https://api.coursera.org/api/courses.v1?q=search&query=${offerPrm}&fields=photoUrl,description,primaryLanguages,certificates,previewLink,categories`;
       if(userIn.user != 'guest'){
-        res.render("basics/qresult", {trueA : trueA, results : failRes, thJob : offers[jN]});
+        superagent.get(urlx).then((result) => {
+          let resultJSON = result.body.elements;
+          let courseData = resultJSON.map((value) => {
+            return new Course(value);
+          });
+          res.render("basics/qresult", {trueA : trueA, results : failRes, thJob : courseData});
+        });
       }else{
-        res.render("basics/qresult", {trueA : trueA, results : failRes, thJob : offers[jN]});
+        superagent.get(urlx).then((result) => {
+          let resultJSON = result.body.elements;
+          let courseData = resultJSON.map((value) => {
+            return new Course(value);
+          });
+          res.render("basics/qresult", {trueA : trueA, results : failRes, thJob : courseData});
+        });
       }
 
     }
